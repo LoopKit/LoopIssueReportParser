@@ -52,8 +52,8 @@ struct StoredGlucoseSample {
     let isDisplayOnly: Bool
     let wasUserEntered: Bool
     let condition: String?
-    let trend: String?
-    let trendRate: String?
+    let trend: GlucoseTrend?
+    let trendRate: HKQuantity?
 }
 
 struct DebugDateParser: Parser {
@@ -78,6 +78,23 @@ struct DebugDateParser: Parser {
         }
         input.removeFirst(Self.expectedCharacterCount)
         return date
+    }
+}
+
+struct GlucoseTrendParser: Parser {
+    var body: some Parser<Substring, GlucoseTrend> {
+        Parse() {
+            "LoopKit.GlucoseTrend."
+            OneOf {
+                "upUpUp".map { GlucoseTrend.upUpUp }
+                "upUp".map { GlucoseTrend.upUp }
+                "up".map { GlucoseTrend.up }
+                "flat".map { GlucoseTrend.flat }
+                "down".map { GlucoseTrend.down }
+                "downDown".map { GlucoseTrend.downDown }
+                "downDownDown".map { GlucoseTrend.downDownDown }
+            }
+        }
     }
 }
 
@@ -186,13 +203,13 @@ StoredGlucoseSample(uuid: Optional(67D65FB7-1E8F-4847-9ACD-3A9CFA318317), proven
             ", "
             ParseAttribute(name: "trend") {
                 ParseOptional {
-                    Prefix { $0 != "," }
+                    GlucoseTrendParser()
                 }
             }
             ", "
             ParseAttribute(name: "trendRate") {
                 ParseOptional {
-                    Prefix { $0 != "," }
+                    QuantityParser()
                 }
             }
             ")"
@@ -212,8 +229,8 @@ StoredGlucoseSample(uuid: Optional(67D65FB7-1E8F-4847-9ACD-3A9CFA318317), proven
                 isDisplayOnly: result.0.8,
                 wasUserEntered: result.0.9,
                 condition: result.1.map(String.init),
-                trend: result.2.map(String.init),
-                trendRate: result.3.map(String.init))
+                trend: result.2,
+                trendRate: result.3)
 
 
             print("sample = \(sample)")
