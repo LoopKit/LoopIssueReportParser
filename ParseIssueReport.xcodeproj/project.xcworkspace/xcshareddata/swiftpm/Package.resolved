@@ -1,0 +1,61 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "swift-argument-parser",
+        "repositoryURL": "https://github.com/apple/swift-argument-parser",
+        "state": {
+          "branch": null,
+          "revision": "6b2aa2748a7881eebb9f84fb10c01293e15b52ca",
+          "version": "0.5.0"
+        }
+      },
+      {
+        "package": "Benchmark",
+        "repositoryURL": "https://github.com/google/swift-benchmark",
+        "state": {
+          "branch": null,
+          "revision": "a0564bf88df5f94eec81348a2f089494c6b28d80",
+          "version": "0.1.1"
+        }
+      },
+      {
+        "package": "swift-case-paths",
+        "repositoryURL": "https://github.com/pointfreeco/swift-case-paths",
+        "state": {
+          "branch": null,
+          "revision": "870133b7b2387df136ad301ec67b2e864b51dda1",
+          "version": "0.14.0"
+        }
+      },
+      {
+        "package": "SwiftDocCPlugin",
+        "repositoryURL": "https://github.com/apple/swift-docc-plugin",
+        "state": {
+          "branch": null,
+          "revision": "9b1258905c21fc1b97bf03d1b4ca12c4ec4e5fda",
+          "version": "1.2.0"
+        }
+      },
+      {
+        "package": "SymbolKit",
+        "repositoryURL": "https://github.com/apple/swift-docc-symbolkit",
+        "state": {
+          "branch": null,
+          "revision": "b45d1f2ed151d057b54504d653e0da5552844e34",
+          "version": "1.0.0"
+        }
+      },
+      {
+        "package": "xctest-dynamic-overlay",
+        "repositoryURL": "https://github.com/pointfreeco/xctest-dynamic-overlay",
+        "state": {
+          "branch": null,
+          "revision": "ab8c9f45843694dd16be4297e6d44c0634fd9913",
+          "version": "0.8.4"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

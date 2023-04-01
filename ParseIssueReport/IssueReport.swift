@@ -1,0 +1,171 @@
+//
+//  IssueReport.swift
+//  ParseIssueReport
+//
+//  Created by Pete Schwamb on 3/28/23.
+//
+
+import HealthKit
+import Parsing
+
+public enum GlucoseCondition: String, Codable {
+    case belowRange
+    case aboveRange
+}
+
+public enum GlucoseTrend: Int, CaseIterable {
+    case upUpUp       = 1
+    case upUp         = 2
+    case up           = 3
+    case flat         = 4
+    case down         = 5
+    case downDown     = 6
+    case downDownDown = 7
+}
+
+struct StoredGlucoseSample {
+    let uuid: String?
+    let provenanceIdentifier: String
+    let syncIdentifier: String?
+    let syncVersion: Int?
+    let device: String?
+    let healthKitEligibleDate: String?
+    let startDate: String?
+    let quantity: String
+    let isDisplayOnly: Bool
+    let wasUserEntered: Bool
+    let condition: String?
+    let trend: String?
+    let trendRate: String?
+}
+
+struct ParseAttribute<ValueParser: Parser>: Parser where ValueParser.Input == Substring {
+    let name: String
+    let valueParser: ValueParser
+
+    init(name: String, @ParserBuilder<Input> _ build: () -> ValueParser) {
+        self.name = name
+        self.valueParser = build()
+    }
+
+    @inlinable
+    public func parse(_ input: inout ValueParser.Input) throws -> ValueParser.Output {
+        return try Parse {
+            name
+            ": "
+            valueParser
+        }.parse(&input)
+    }
+}
+
+struct IssueReport {
+    let glucose: [Double]
+
+    static func parse() -> IssueReport {
+        let input = """
+StoredGlucoseSample(uuid: Optional(67D65FB7-1E8F-4847-9ACD-3A9CFA318317), provenanceIdentifier: "com.UY678SP37Q.loopkit.Loop", syncIdentifier: Optional("9539206F-BF15-41BD-BBCE-E31528AFE4CE"), syncVersion: Optional(1), device: Optional(<<HKDevice: 0x281384d20>, name:MockCGMManager, manufacturer:LoopKit, model:MockCGMManager, software:1.0>), healthKitEligibleDate: nil, startDate: 2023-03-15 22:16:38 +0000, quantity: 100 mg/dL, isDisplayOnly: false, wasUserEntered: false, condition: nil, trend: nil, trendRate: nil)
+"""
+
+        let input2 = "Optional(\"9539206F-BF15-41BD-BBCE-E31528AFE4CE\")"
+
+//
+        let storedGlucoseSample = Parse(input: Substring.self) {
+            "StoredGlucoseSample("
+            ParseAttribute(name: "uuid") {
+                ParseOptional { Prefix { $0 != ")" } }
+            }
+            ", "
+            ParseAttribute(name: "provenanceIdentifier") {
+                "\""
+                Prefix { $0 != "\"" }
+                "\""
+            }
+            ", "
+            ParseAttribute(name: "syncIdentifier") {
+                ParseOptional {
+                    "\""
+                    Prefix { $0 != "\"" }
+                    "\""
+                }
+            }
+            ", "
+            ParseAttribute(name: "syncVersion") {
+                ParseOptional {
+                    Int.parser()
+                }
+            }
+            ", "
+            ParseAttribute(name: "device") {
+                ParseOptional {
+                    Prefix { $0 != ")" }
+                }
+            }
+            ", "
+            ParseAttribute(name: "healthKitEligibleDate") {
+                ParseOptional {
+                    Prefix { $0 != "," }
+                }
+            }
+            ", "
+            ParseAttribute(name: "startDate") {
+                Prefix { $0 != "," }
+            }
+            ", "
+            ParseAttribute(name: "quantity") {
+                Prefix { $0 != "," }
+            }
+            ", "
+            ParseAttribute(name: "isDisplayOnly") {
+                Bool.parser()
+            }
+            ", "
+            ParseAttribute(name: "wasUserEntered") {
+                Bool.parser()
+            }
+            ", "
+            ParseAttribute(name: "condition") {
+                ParseOptional {
+                    Prefix { $0 != "," }
+                }
+            }
+            ", "
+            ParseAttribute(name: "trend") {
+                ParseOptional {
+                    Prefix { $0 != "," }
+                }
+            }
+            ", "
+            ParseAttribute(name: "trendRate") {
+                ParseOptional {
+                    Prefix { $0 != "," }
+                }
+            }
+            ")"
+        }
+
+        do {
+            let result = try storedGlucoseSample.parse(input)
+            let sample = StoredGlucoseSample(
+                uuid: result.0.0.map(String.init),
+                provenanceIdentifier: String(result.0.1),
+                syncIdentifier: result.0.2.map(String.init),
+                syncVersion: result.0.3,
+                device: result.0.4.map(String.init),
+                healthKitEligibleDate: result.0.5.map(String.init),
+                startDate: String(result.0.6),
+                quantity: String(result.0.7),
+                isDisplayOnly: result.0.8,
+                wasUserEntered: result.0.9,
+                condition: result.1.map(String.init),
+                trend: result.2.map(String.init),
+                trendRate: result.3.map(String.init))
+
+
+            print("sample = \(sample)")
+        } catch {
+            print("Failed: \(error)")
+        }
+
+        return IssueReport(glucose: [])
+    }
+}
