@@ -8,6 +8,23 @@
 import HealthKit
 import Parsing
 
+enum ParsingError: Error {
+    case inputEndedTooEarly(Int)
+    case invalidDate(String, String)
+}
+
+extension ParsingError: CustomDebugStringConvertible {
+    var debugDescription: String {
+        switch self {
+        case .invalidDate(let failed, let format):
+            return "Invalid format: \"\(failed)\". Expected format \(format)"
+        case .inputEndedTooEarly(let count):
+            return "Not enough characters. Needed \(count) characters."
+        }
+    }
+}
+
+
 public enum GlucoseCondition: String, Codable {
     case belowRange
     case aboveRange
@@ -30,13 +47,37 @@ struct StoredGlucoseSample {
     let syncVersion: Int?
     let device: String?
     let healthKitEligibleDate: String?
-    let startDate: String?
+    let startDate: Date
     let quantity: String
     let isDisplayOnly: Bool
     let wasUserEntered: Bool
     let condition: String?
     let trend: String?
     let trendRate: String?
+}
+
+struct DefaultDebugFormatDate: Parser {
+    static let dateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss xx"
+        return dateFormatter
+    }()
+
+    static let expectedCharacterCount = 25
+
+    func parse(_ input: inout Substring) throws -> Date {
+        let dateStr = String(input.prefix(Self.expectedCharacterCount))
+
+        guard dateStr.count == Self.expectedCharacterCount else {
+            throw ParsingError.inputEndedTooEarly(Self.expectedCharacterCount)
+        }
+
+        guard let date = Self.dateFormatter.date(from: dateStr) else {
+            throw ParsingError.invalidDate(dateStr, Self.dateFormatter.dateFormat)
+        }
+        input.removeFirst(Self.expectedCharacterCount)
+        return date
+    }
 }
 
 struct ParseAttribute<ValueParser: Parser>: Parser where ValueParser.Input == Substring {
@@ -63,12 +104,10 @@ struct IssueReport {
 
     static func parse() -> IssueReport {
         let input = """
-StoredGlucoseSample(uuid: Optional(67D65FB7-1E8F-4847-9ACD-3A9CFA318317), provenanceIdentifier: "com.UY678SP37Q.loopkit.Loop", syncIdentifier: Optional("9539206F-BF15-41BD-BBCE-E31528AFE4CE"), syncVersion: Optional(1), device: Optional(<<HKDevice: 0x281384d20>, name:MockCGMManager, manufacturer:LoopKit, model:MockCGMManager, software:1.0>), healthKitEligibleDate: nil, startDate: 2023-03-15 22:16:38 +0000, quantity: 100 mg/dL, isDisplayOnly: false, wasUserEntered: false, condition: nil, trend: nil, trendRate: nil)
+StoredGlucoseSample(uuid: Optional(67D65FB7-1E8F-4847-9ACD-3A9CFA318317), provenanceIdentifier: "com.UY678SP37Q.loopkit.Loop", syncIdentifier: Optional("9539206F-BF15-41BD-BBCE-E31528AFE4CE"), syncVersion: Optional(1), device: Optional(<<HKDevice: 0x281384d20>, name:MockCGMManager, manufacturer:LoopKit, model:MockCGMManager, software:1.0>), healthKitEligibleDate: nil, startDate: 2023-03-15 22:16:18 +0000, quantity: 100 mg/dL, isDisplayOnly: false, wasUserEntered: false, condition: nil, trend: nil, trendRate: nil)
 """
 
-        let input2 = "Optional(\"9539206F-BF15-41BD-BBCE-E31528AFE4CE\")"
 
-//
         let storedGlucoseSample = Parse(input: Substring.self) {
             "StoredGlucoseSample("
             ParseAttribute(name: "uuid") {
@@ -108,7 +147,7 @@ StoredGlucoseSample(uuid: Optional(67D65FB7-1E8F-4847-9ACD-3A9CFA318317), proven
             }
             ", "
             ParseAttribute(name: "startDate") {
-                Prefix { $0 != "," }
+                DefaultDebugFormatDate()
             }
             ", "
             ParseAttribute(name: "quantity") {
@@ -152,7 +191,7 @@ StoredGlucoseSample(uuid: Optional(67D65FB7-1E8F-4847-9ACD-3A9CFA318317), proven
                 syncVersion: result.0.3,
                 device: result.0.4.map(String.init),
                 healthKitEligibleDate: result.0.5.map(String.init),
-                startDate: String(result.0.6),
+                startDate: result.0.6,
                 quantity: String(result.0.7),
                 isDisplayOnly: result.0.8,
                 wasUserEntered: result.0.9,
