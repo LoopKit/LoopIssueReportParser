@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C169A7DD29D8C5F600194F24 /* HKUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C169A7DC29D8C5F600194F24 /* HKUnit.swift */; };
 		C17204C629D3BEC900EA788D /* Parsing in Frameworks */ = {isa = PBXBuildFile; productRef = C17204C529D3BEC900EA788D /* Parsing */; };
 		C17204C929D7313F00EA788D /* ParseOptional.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17204C829D7313F00EA788D /* ParseOptional.swift */; };
 		C181BC9C29D3B72400F25DB3 /* ParseIssueReportApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C181BC9B29D3B72400F25DB3 /* ParseIssueReportApp.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C169A7DC29D8C5F600194F24 /* HKUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKUnit.swift; sourceTree = "<group>"; };
 		C17204C729D3CFF200EA788D /* swift-parsing */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "swift-parsing"; path = "../swift-parsing"; sourceTree = "<group>"; };
 		C17204C829D7313F00EA788D /* ParseOptional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseOptional.swift; sourceTree = "<group>"; };
 		C181BC9829D3B72400F25DB3 /* ParseIssueReport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseIssueReport.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,6 +41,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C169A7DB29D8C5E700194F24 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C169A7DC29D8C5F600194F24 /* HKUnit.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C181BC8F29D3B72400F25DB3 = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +69,7 @@
 		C181BC9A29D3B72400F25DB3 /* ParseIssueReport */ = {
 			isa = PBXGroup;
 			children = (
+				C169A7DB29D8C5E700194F24 /* Extensions */,
 				C181BC9B29D3B72400F25DB3 /* ParseIssueReportApp.swift */,
 				C181BC9D29D3B72400F25DB3 /* ContentView.swift */,
 				C181BC9F29D3B72500F25DB3 /* Assets.xcassets */,
@@ -165,6 +176,7 @@
 				C181BC9E29D3B72400F25DB3 /* ContentView.swift in Sources */,
 				C181BC9C29D3B72400F25DB3 /* ParseIssueReportApp.swift in Sources */,
 				C17204C929D7313F00EA788D /* ParseOptional.swift in Sources */,
+				C169A7DD29D8C5F600194F24 /* HKUnit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
