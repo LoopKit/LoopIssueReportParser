@@ -8,8 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		C169A7DD29D8C5F600194F24 /* HKUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = C169A7DC29D8C5F600194F24 /* HKUnit.swift */; };
+		C169A7E029D8DA9500194F24 /* QuantityParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C169A7DF29D8DA9500194F24 /* QuantityParser.swift */; };
+		C169A7E229D8DAB900194F24 /* DebugDateParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C169A7E129D8DAB900194F24 /* DebugDateParser.swift */; };
+		C169A7E429D8DAE100194F24 /* AttributeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C169A7E329D8DAE100194F24 /* AttributeParser.swift */; };
+		C169A7E629D8DB2800194F24 /* GlucoseTrend.swift in Sources */ = {isa = PBXBuildFile; fileRef = C169A7E529D8DB2800194F24 /* GlucoseTrend.swift */; };
+		C169A7E829D8DB4400194F24 /* ParsingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C169A7E729D8DB4400194F24 /* ParsingError.swift */; };
 		C17204C629D3BEC900EA788D /* Parsing in Frameworks */ = {isa = PBXBuildFile; productRef = C17204C529D3BEC900EA788D /* Parsing */; };
-		C17204C929D7313F00EA788D /* ParseOptional.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17204C829D7313F00EA788D /* ParseOptional.swift */; };
+		C17204C929D7313F00EA788D /* OptionalParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17204C829D7313F00EA788D /* OptionalParser.swift */; };
+		C175D4FF29D8DC11006A049C /* StoredGlucoseSampleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C175D4FE29D8DC11006A049C /* StoredGlucoseSampleParser.swift */; };
 		C181BC9C29D3B72400F25DB3 /* ParseIssueReportApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C181BC9B29D3B72400F25DB3 /* ParseIssueReportApp.swift */; };
 		C181BC9E29D3B72400F25DB3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C181BC9D29D3B72400F25DB3 /* ContentView.swift */; };
 		C181BCA029D3B72500F25DB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C181BC9F29D3B72500F25DB3 /* Assets.xcassets */; };
@@ -19,8 +25,14 @@
 
 /* Begin PBXFileReference section */
 		C169A7DC29D8C5F600194F24 /* HKUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKUnit.swift; sourceTree = "<group>"; };
+		C169A7DF29D8DA9500194F24 /* QuantityParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityParser.swift; sourceTree = "<group>"; };
+		C169A7E129D8DAB900194F24 /* DebugDateParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugDateParser.swift; sourceTree = "<group>"; };
+		C169A7E329D8DAE100194F24 /* AttributeParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeParser.swift; sourceTree = "<group>"; };
+		C169A7E529D8DB2800194F24 /* GlucoseTrend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseTrend.swift; sourceTree = "<group>"; };
+		C169A7E729D8DB4400194F24 /* ParsingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingError.swift; sourceTree = "<group>"; };
 		C17204C729D3CFF200EA788D /* swift-parsing */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "swift-parsing"; path = "../swift-parsing"; sourceTree = "<group>"; };
-		C17204C829D7313F00EA788D /* ParseOptional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseOptional.swift; sourceTree = "<group>"; };
+		C17204C829D7313F00EA788D /* OptionalParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalParser.swift; sourceTree = "<group>"; };
+		C175D4FE29D8DC11006A049C /* StoredGlucoseSampleParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredGlucoseSampleParser.swift; sourceTree = "<group>"; };
 		C181BC9829D3B72400F25DB3 /* ParseIssueReport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParseIssueReport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C181BC9B29D3B72400F25DB3 /* ParseIssueReportApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseIssueReportApp.swift; sourceTree = "<group>"; };
 		C181BC9D29D3B72400F25DB3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,6 +61,19 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		C169A7DE29D8DA8B00194F24 /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				C17204C829D7313F00EA788D /* OptionalParser.swift */,
+				C169A7DF29D8DA9500194F24 /* QuantityParser.swift */,
+				C169A7E129D8DAB900194F24 /* DebugDateParser.swift */,
+				C169A7E329D8DAE100194F24 /* AttributeParser.swift */,
+				C169A7E529D8DB2800194F24 /* GlucoseTrend.swift */,
+				C175D4FE29D8DC11006A049C /* StoredGlucoseSampleParser.swift */,
+			);
+			path = Parsers;
+			sourceTree = "<group>";
+		};
 		C181BC8F29D3B72400F25DB3 = {
 			isa = PBXGroup;
 			children = (
@@ -69,13 +94,14 @@
 		C181BC9A29D3B72400F25DB3 /* ParseIssueReport */ = {
 			isa = PBXGroup;
 			children = (
+				C169A7DE29D8DA8B00194F24 /* Parsers */,
 				C169A7DB29D8C5E700194F24 /* Extensions */,
 				C181BC9B29D3B72400F25DB3 /* ParseIssueReportApp.swift */,
 				C181BC9D29D3B72400F25DB3 /* ContentView.swift */,
 				C181BC9F29D3B72500F25DB3 /* Assets.xcassets */,
 				C181BCA129D3B72500F25DB3 /* Preview Content */,
 				C181BCAB29D3B91B00F25DB3 /* IssueReport.swift */,
-				C17204C829D7313F00EA788D /* ParseOptional.swift */,
+				C169A7E729D8DB4400194F24 /* ParsingError.swift */,
 			);
 			path = ParseIssueReport;
 			sourceTree = "<group>";
@@ -172,11 +198,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C169A7E629D8DB2800194F24 /* GlucoseTrend.swift in Sources */,
+				C175D4FF29D8DC11006A049C /* StoredGlucoseSampleParser.swift in Sources */,
 				C181BCAC29D3B91B00F25DB3 /* IssueReport.swift in Sources */,
+				C169A7E429D8DAE100194F24 /* AttributeParser.swift in Sources */,
+				C169A7E029D8DA9500194F24 /* QuantityParser.swift in Sources */,
 				C181BC9E29D3B72400F25DB3 /* ContentView.swift in Sources */,
+				C169A7E229D8DAB900194F24 /* DebugDateParser.swift in Sources */,
 				C181BC9C29D3B72400F25DB3 /* ParseIssueReportApp.swift in Sources */,
-				C17204C929D7313F00EA788D /* ParseOptional.swift in Sources */,
+				C17204C929D7313F00EA788D /* OptionalParser.swift in Sources */,
 				C169A7DD29D8C5F600194F24 /* HKUnit.swift in Sources */,
+				C169A7E829D8DB4400194F24 /* ParsingError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
