@@ -21,6 +21,8 @@
 		C181BCA029D3B72500F25DB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C181BC9F29D3B72500F25DB3 /* Assets.xcassets */; };
 		C181BCA329D3B72500F25DB3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C181BCA229D3B72500F25DB3 /* Preview Assets.xcassets */; };
 		C181BCAC29D3B91B00F25DB3 /* IssueReportParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C181BCAB29D3B91B00F25DB3 /* IssueReportParser.swift */; };
+		C1CC897329D9D4AE00BE0692 /* DoseEntryParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC897229D9D4AE00BE0692 /* DoseEntryParser.swift */; };
+		C1CC897529D9D96900BE0692 /* DoseTypeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC897429D9D96900BE0692 /* DoseTypeParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		C181BC9F29D3B72500F25DB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C181BCA229D3B72500F25DB3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C181BCAB29D3B91B00F25DB3 /* IssueReportParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueReportParser.swift; sourceTree = "<group>"; };
+		C1CC897229D9D4AE00BE0692 /* DoseEntryParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseEntryParser.swift; sourceTree = "<group>"; };
+		C1CC897429D9D96900BE0692 /* DoseTypeParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseTypeParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,13 +68,15 @@
 		C169A7DE29D8DA8B00194F24 /* Parsers */ = {
 			isa = PBXGroup;
 			children = (
+				C169A7E329D8DAE100194F24 /* AttributeParser.swift */,
+				C169A7E129D8DAB900194F24 /* DebugDateParser.swift */,
+				C1CC897229D9D4AE00BE0692 /* DoseEntryParser.swift */,
+				C169A7E529D8DB2800194F24 /* GlucoseTrend.swift */,
 				C181BCAB29D3B91B00F25DB3 /* IssueReportParser.swift */,
 				C17204C829D7313F00EA788D /* OptionalParser.swift */,
 				C169A7DF29D8DA9500194F24 /* QuantityParser.swift */,
-				C169A7E129D8DAB900194F24 /* DebugDateParser.swift */,
-				C169A7E329D8DAE100194F24 /* AttributeParser.swift */,
-				C169A7E529D8DB2800194F24 /* GlucoseTrend.swift */,
 				C175D4FE29D8DC11006A049C /* StoredGlucoseSampleParser.swift */,
+				C1CC897429D9D96900BE0692 /* DoseTypeParser.swift */,
 			);
 			path = Parsers;
 			sourceTree = "<group>";
@@ -204,11 +210,13 @@
 				C169A7E429D8DAE100194F24 /* AttributeParser.swift in Sources */,
 				C169A7E029D8DA9500194F24 /* QuantityParser.swift in Sources */,
 				C181BC9E29D3B72400F25DB3 /* ContentView.swift in Sources */,
+				C1CC897329D9D4AE00BE0692 /* DoseEntryParser.swift in Sources */,
 				C169A7E229D8DAB900194F24 /* DebugDateParser.swift in Sources */,
 				C181BC9C29D3B72400F25DB3 /* ParseIssueReportApp.swift in Sources */,
 				C17204C929D7313F00EA788D /* OptionalParser.swift in Sources */,
 				C169A7DD29D8C5F600194F24 /* HKUnit.swift in Sources */,
 				C169A7E829D8DB4400194F24 /* ParsingError.swift in Sources */,
+				C1CC897529D9D96900BE0692 /* DoseTypeParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@ import HealthKit
 import Parsing
 
 struct IssueReport {
+    let cachedDoseEntries: [DoseEntry]
     let cachedGlucoseSamples: [StoredGlucoseSample]
 }
 
@@ -16,6 +17,14 @@ struct IssueReportParser: Parser {
 
     var body: some Parser<Substring, IssueReport> {
         let p = Parse {
+            "#### cachedDoseEntries"
+            Whitespace(.vertical)
+            Many {
+                DoseEntryParser()
+            } separator: {
+                Whitespace(.vertical)
+            }
+            Whitespace(.vertical)
             "### cachedGlucoseSamples"
             Whitespace(.vertical)
             Many {
@@ -25,7 +34,10 @@ struct IssueReportParser: Parser {
             }
         }
         return p.map { value in
-            IssueReport(cachedGlucoseSamples: value)
+            IssueReport(
+                cachedDoseEntries: value.0,
+                cachedGlucoseSamples: value.1
+            )
         }
     }
 }

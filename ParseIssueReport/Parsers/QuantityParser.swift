@@ -11,7 +11,7 @@ import Parsing
 struct QuantityParser: Parser {
     var body: some Parser<Substring, HKQuantity> {
         Parse() {
-            Double.parser() //<Substring>(of: Substring.self)
+            Double.parser()
             " "
             OneOf {
                 "mg/dL".map { HKUnit.milligramsPerDeciliter }
