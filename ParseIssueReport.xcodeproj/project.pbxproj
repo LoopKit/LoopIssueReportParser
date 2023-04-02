@@ -20,7 +20,7 @@
 		C181BC9E29D3B72400F25DB3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C181BC9D29D3B72400F25DB3 /* ContentView.swift */; };
 		C181BCA029D3B72500F25DB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C181BC9F29D3B72500F25DB3 /* Assets.xcassets */; };
 		C181BCA329D3B72500F25DB3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C181BCA229D3B72500F25DB3 /* Preview Assets.xcassets */; };
-		C181BCAC29D3B91B00F25DB3 /* IssueReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C181BCAB29D3B91B00F25DB3 /* IssueReport.swift */; };
+		C181BCAC29D3B91B00F25DB3 /* IssueReportParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C181BCAB29D3B91B00F25DB3 /* IssueReportParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +38,7 @@
 		C181BC9D29D3B72400F25DB3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C181BC9F29D3B72500F25DB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C181BCA229D3B72500F25DB3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C181BCAB29D3B91B00F25DB3 /* IssueReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueReport.swift; sourceTree = "<group>"; };
+		C181BCAB29D3B91B00F25DB3 /* IssueReportParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueReportParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +64,7 @@
 		C169A7DE29D8DA8B00194F24 /* Parsers */ = {
 			isa = PBXGroup;
 			children = (
+				C181BCAB29D3B91B00F25DB3 /* IssueReportParser.swift */,
 				C17204C829D7313F00EA788D /* OptionalParser.swift */,
 				C169A7DF29D8DA9500194F24 /* QuantityParser.swift */,
 				C169A7E129D8DAB900194F24 /* DebugDateParser.swift */,
@@ -100,7 +101,6 @@
 				C181BC9D29D3B72400F25DB3 /* ContentView.swift */,
 				C181BC9F29D3B72500F25DB3 /* Assets.xcassets */,
 				C181BCA129D3B72500F25DB3 /* Preview Content */,
-				C181BCAB29D3B91B00F25DB3 /* IssueReport.swift */,
 				C169A7E729D8DB4400194F24 /* ParsingError.swift */,
 			);
 			path = ParseIssueReport;
@@ -200,7 +200,7 @@
 			files = (
 				C169A7E629D8DB2800194F24 /* GlucoseTrend.swift in Sources */,
 				C175D4FF29D8DC11006A049C /* StoredGlucoseSampleParser.swift in Sources */,
-				C181BCAC29D3B91B00F25DB3 /* IssueReport.swift in Sources */,
+				C181BCAC29D3B91B00F25DB3 /* IssueReportParser.swift in Sources */,
 				C169A7E429D8DAE100194F24 /* AttributeParser.swift in Sources */,
 				C169A7E029D8DA9500194F24 /* QuantityParser.swift in Sources */,
 				C181BC9E29D3B72400F25DB3 /* ContentView.swift in Sources */,
