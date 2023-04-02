@@ -71,12 +71,12 @@
 				C169A7E329D8DAE100194F24 /* AttributeParser.swift */,
 				C169A7E129D8DAB900194F24 /* DebugDateParser.swift */,
 				C1CC897229D9D4AE00BE0692 /* DoseEntryParser.swift */,
+				C1CC897429D9D96900BE0692 /* DoseTypeParser.swift */,
 				C169A7E529D8DB2800194F24 /* GlucoseTrend.swift */,
 				C181BCAB29D3B91B00F25DB3 /* IssueReportParser.swift */,
 				C17204C829D7313F00EA788D /* OptionalParser.swift */,
 				C169A7DF29D8DA9500194F24 /* QuantityParser.swift */,
 				C175D4FE29D8DC11006A049C /* StoredGlucoseSampleParser.swift */,
-				C1CC897429D9D96900BE0692 /* DoseTypeParser.swift */,
 			);
 			path = Parsers;
 			sourceTree = "<group>";
