@@ -8,6 +8,11 @@
 import Parsing
 import HealthKit
 
+extension HKQuantity: Comparable {}
+
+public func <(lhs: HKQuantity, rhs: HKQuantity) -> Bool {
+    return lhs.compare(rhs) == .orderedAscending
+}
 
 
 struct LoopSettings {
@@ -18,6 +23,8 @@ struct LoopSettings {
     let insulinSensitivitySchedule: InsulinSensitivitySchedule?
     let basalRateSchedule: BasalRateSchedule?
     let carbRatioSchedule: CarbRatioSchedule?
+    let preMealTargetRange: ClosedRange<HKQuantity>?
+    var legacyWorkoutTargetRange: ClosedRange<HKQuantity>?
 }
 
 struct LoopSettingsParser: Parser {
@@ -57,6 +64,34 @@ struct LoopSettingsParser: Parser {
                     }
                 }
             }
+            ", "
+            AttributeParser(name: "preMealTargetRange") {
+                OptionalParser {
+                    Parse {
+                        "ClosedRange("
+                        QuantityParser()
+                        "..."
+                        QuantityParser()
+                        ")"
+                    }.map { value in
+                        return (value.0)...(value.1)
+                    }
+                }
+            }
+            ", "
+            AttributeParser(name: "legacyWorkoutTargetRange") {
+                OptionalParser {
+                    Parse {
+                        "ClosedRange("
+                        QuantityParser()
+                        "..."
+                        QuantityParser()
+                        ")"
+                    }.map { value in
+                        return (value.0)...(value.1)
+                    }
+                }
+            }
         }
 
         return p.map { (value) -> LoopSettings in
@@ -65,7 +100,8 @@ struct LoopSettingsParser: Parser {
                 glucoseTargetRangeSchedule: value.1,
                 insulinSensitivitySchedule: value.2,
                 basalRateSchedule: value.3,
-                carbRatioSchedule: value.4
+                carbRatioSchedule: value.4,
+                preMealTargetRange: value.5
             )
         }
     }
