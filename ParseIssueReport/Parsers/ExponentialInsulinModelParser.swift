@@ -31,7 +31,6 @@ struct ExponentialInsulinModelParser: Parser {
             AttributeValueParser(name: "delay") {
                 Double.parser()
             }
-            ")"
         }.map { (duration, peak, delay) in
             ExponentialInsulinModel(actionDuration: duration, peakActivityTime: peak, delay: delay)
         }

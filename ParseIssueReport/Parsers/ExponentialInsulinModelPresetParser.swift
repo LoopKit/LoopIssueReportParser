@@ -23,27 +23,22 @@ struct ExponentialInsulinModelPresetParser: Parser {
             Parse {
                 "rapidActingAdult("
                 ExponentialInsulinModelParser()
-                ")"
             }.map { ExponentialInsulinModelPreset.rapidActingAdult($0) }
             Parse {
                 "rapidActingChild("
                 ExponentialInsulinModelParser()
-                ")"
             }.map { ExponentialInsulinModelPreset.rapidActingChild($0) }
             Parse {
                 "fiasp("
                 ExponentialInsulinModelParser()
-                ")"
             }.map { ExponentialInsulinModelPreset.fiasp($0) }
             Parse {
                 "lyumjev("
                 ExponentialInsulinModelParser()
-                ")"
             }.map { ExponentialInsulinModelPreset.lyumjev($0) }
             Parse {
                 "afrezza("
                 ExponentialInsulinModelParser()
-                ")"
             }.map { ExponentialInsulinModelPreset.afrezza($0) }
         }
     }
