@@ -11,6 +11,7 @@ enum ParsingError: Error {
     case inputEndedTooEarly(Int)
     case invalidDate(String, String)
     case invalidTimeZoneOffset(Int)
+    case missingAttribute(String)
 }
 
 extension ParsingError: CustomDebugStringConvertible {
@@ -22,6 +23,8 @@ extension ParsingError: CustomDebugStringConvertible {
             return "Not enough characters. Needed \(count) characters."
         case .invalidTimeZoneOffset(let offset):
             return "Invalid TimeZone offset: \(offset)"
+        case .missingAttribute(let name):
+            return "Missing attribute: \(name)"
         }
     }
 }

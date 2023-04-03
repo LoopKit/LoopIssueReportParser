@@ -8,6 +8,11 @@
 import Foundation
 import Parsing
 
+struct Attribute<T> {
+    let name: String
+    let value: T
+}
+
 struct AttributeParser<ValueParser: Parser>: Parser where ValueParser.Input == Substring {
     let name: String
     let valueParser: ValueParser
@@ -16,9 +21,13 @@ struct AttributeParser<ValueParser: Parser>: Parser where ValueParser.Input == S
         self.name = name
         self.valueParser = build()
     }
-    var body: some Parser<Substring, ValueParser.Output> {
-        name
-        ": "
-        valueParser
+    var body: some Parser<Substring, Attribute<ValueParser.Output>> {
+        Parse {
+            name
+            ": "
+            valueParser
+        }.map {
+            Attribute(name: name, value: $0)
+        }
     }
 }

@@ -20,11 +20,11 @@ struct GlucoseThresholdParser: Parser {
     var body: some Parser<Substring, GlucoseThreshold> {
         Parse() {
             "LoopKit.GlucoseThreshold("
-            AttributeParser(name: "value") {
+            AttributeValueParser(name: "value") {
                 Double.parser()
             }
             ", "
-            AttributeParser(name: "unit") {
+            AttributeValueParser(name: "unit") {
                 HKUnitParser()
             }
             ")"

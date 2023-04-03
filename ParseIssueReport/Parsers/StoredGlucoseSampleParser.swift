@@ -31,7 +31,7 @@ struct StoredGlucoseSampleParser: Parser {
 
         let p = Parse {
             "StoredGlucoseSample("
-            AttributeParser(name: "uuid") {
+            AttributeValueParser(name: "uuid") {
                 OptionalParser {
                     Prefix() {
                         $0 != ")"
@@ -39,13 +39,13 @@ struct StoredGlucoseSampleParser: Parser {
                 }
             }
             ", "
-            AttributeParser(name: "provenanceIdentifier") {
+            AttributeValueParser(name: "provenanceIdentifier") {
                 "\""
                 Prefix { $0 != "\"" }
                 "\""
             }
             ", "
-            AttributeParser(name: "syncIdentifier") {
+            AttributeValueParser(name: "syncIdentifier") {
                 OptionalParser {
                     "\""
                     Prefix { $0 != "\"" }
@@ -53,53 +53,53 @@ struct StoredGlucoseSampleParser: Parser {
                 }
             }
             ", "
-            AttributeParser(name: "syncVersion") {
+            AttributeValueParser(name: "syncVersion") {
                 OptionalParser {
                     Int.parser()
                 }
             }
             ", "
-            AttributeParser(name: "device") {
+            AttributeValueParser(name: "device") {
                 OptionalParser {
                     Prefix { $0 != ")" }
                 }
             }
             ", "
-            AttributeParser(name: "healthKitEligibleDate") {
+            AttributeValueParser(name: "healthKitEligibleDate") {
                 OptionalParser {
                     DebugDateParser()
                 }
             }
             ", "
-            AttributeParser(name: "startDate") {
+            AttributeValueParser(name: "startDate") {
                 DebugDateParser()
             }
             ", "
-            AttributeParser(name: "quantity") {
+            AttributeValueParser(name: "quantity") {
                 QuantityParser()
             }
             ", "
-            AttributeParser(name: "isDisplayOnly") {
+            AttributeValueParser(name: "isDisplayOnly") {
                 Bool.parser()
             }
             ", "
-            AttributeParser(name: "wasUserEntered") {
+            AttributeValueParser(name: "wasUserEntered") {
                 Bool.parser()
             }
             ", "
-            AttributeParser(name: "condition") {
+            AttributeValueParser(name: "condition") {
                 OptionalParser {
                     Prefix { $0 != "," }
                 }
             }
             ", "
-            AttributeParser(name: "trend") {
+            AttributeValueParser(name: "trend") {
                 OptionalParser {
                     GlucoseTrendParser()
                 }
             }
             ", "
-            AttributeParser(name: "trendRate") {
+            AttributeValueParser(name: "trendRate") {
                 OptionalParser {
                     QuantityParser()
                 }

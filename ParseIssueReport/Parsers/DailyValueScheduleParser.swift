@@ -29,11 +29,11 @@ struct DailyValueScheduleParser<TParser: Parser>: Parser where TParser.Input == 
     var body: some Parser<Substring, DailyValueSchedule<TParser.Output>> {
         let p = Parse() {
             "["
-            AttributeParser(name: "\"timeZone\"") {
+            AttributeValueParser(name: "\"timeZone\"") {
                 TimeZoneParser()
             }
             ", "
-            AttributeParser(name: "\"items\"") {
+            AttributeValueParser(name: "\"items\"") {
                 "["
                 Many {
                     RepeatingScheduleValueParser {

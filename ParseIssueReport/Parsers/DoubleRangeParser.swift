@@ -13,11 +13,11 @@ struct DoubleRangeParser: Parser {
     var body: some Parser<Substring, DoubleRange> {
         Parse() {
             "LoopKit.DoubleRange("
-            AttributeParser(name: "minValue") {
+            AttributeValueParser(name: "minValue") {
                 Double.parser()
             }
             ", "
-            AttributeParser(name: "maxValue") {
+            AttributeValueParser(name: "maxValue") {
                 Double.parser()
             }
             ")"

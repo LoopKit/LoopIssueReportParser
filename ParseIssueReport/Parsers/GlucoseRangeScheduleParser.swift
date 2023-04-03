@@ -29,13 +29,13 @@ struct GlucoseRangeScheduleParser: Parser {
     var body: some Parser<Substring, GlucoseRangeSchedule> {
         let p = Parse {
             "LoopKit.GlucoseRangeSchedule("
-            AttributeParser(name: "override") {
+            AttributeValueParser(name: "override") {
                 OptionalParser {
                     Double.parser() // TODO
                 }
             }
             ", "
-            AttributeParser(name: "rangeSchedule") {
+            AttributeValueParser(name: "rangeSchedule") {
                 DailyQuantityScheduleParser {
                     Parse() {
                         "["

@@ -20,15 +20,15 @@ struct ExponentialInsulinModelParser: Parser {
     var body: some Parser<Substring, ExponentialInsulinModel> {
         Parse() {
             "ExponentialInsulinModel("
-            AttributeParser(name: "actionDuration") {
+            AttributeValueParser(name: "actionDuration") {
                 Double.parser()
             }
             ", "
-            AttributeParser(name: "peakActivityTime") {
+            AttributeValueParser(name: "peakActivityTime") {
                 Double.parser()
             }
             ", "
-            AttributeParser(name: "delay") {
+            AttributeValueParser(name: "delay") {
                 Double.parser()
             }
             ")"

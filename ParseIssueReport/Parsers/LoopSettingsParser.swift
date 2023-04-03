@@ -39,17 +39,17 @@ struct LoopSettingsParser: Parser {
     var body: some Parser<Substring, LoopSettings> {
         let p = Parse() {
             "LoopCore.LoopSettings("
-            AttributeParser(name: "dosingEnabled") {
+            AttributeValueParser(name: "dosingEnabled") {
                 Bool.parser()
             }
             ", "
-            AttributeParser(name: "glucoseTargetRangeSchedule") {
+            AttributeValueParser(name: "glucoseTargetRangeSchedule") {
                 OptionalParser {
                     GlucoseRangeScheduleParser()
                 }
             }
             ", "
-            AttributeParser(name: "insulinSensitivitySchedule") {
+            AttributeValueParser(name: "insulinSensitivitySchedule") {
                 OptionalParser {
                     DailyQuantityScheduleParser {
                         Double.parser()
@@ -57,7 +57,7 @@ struct LoopSettingsParser: Parser {
                 }
             }
             ", "
-            AttributeParser(name: "basalRateSchedule") {
+            AttributeValueParser(name: "basalRateSchedule") {
                 OptionalParser {
                     DailyValueScheduleParser {
                         Double.parser()
@@ -65,7 +65,7 @@ struct LoopSettingsParser: Parser {
                 }
             }
             ", "
-            AttributeParser(name: "carbRatioSchedule") {
+            AttributeValueParser(name: "carbRatioSchedule") {
                 OptionalParser {
                     DailyQuantityScheduleParser {
                         Double.parser()
@@ -73,7 +73,7 @@ struct LoopSettingsParser: Parser {
                 }
             }
             ", "
-            AttributeParser(name: "preMealTargetRange") {
+            AttributeValueParser(name: "preMealTargetRange") {
                 OptionalParser {
                     Parse {
                         "ClosedRange("
@@ -87,7 +87,7 @@ struct LoopSettingsParser: Parser {
                 }
             }
             ", "
-            AttributeParser(name: "legacyWorkoutTargetRange") {
+            AttributeValueParser(name: "legacyWorkoutTargetRange") {
                 OptionalParser {
                     Parse {
                         "ClosedRange("
@@ -101,7 +101,7 @@ struct LoopSettingsParser: Parser {
                 }
             }
             ", "
-            AttributeParser(name: "overridePresets") {
+            AttributeValueParser(name: "overridePresets") {
                 "["
                 Many {
                     TemporaryScheduleOverridePresetParser()
@@ -111,45 +111,46 @@ struct LoopSettingsParser: Parser {
                 "]"
             }
             ", "
-            AttributeParser(name: "scheduleOverride") {
+            AttributeValueParser(name: "scheduleOverride") {
                 OptionalParser {
                     TemporaryScheduleOverrideParser()
                 }
             }
             ", "
-            AttributeParser(name: "preMealOverride") {
+            AttributeValueParser(name: "preMealOverride") {
                 OptionalParser {
                     TemporaryScheduleOverrideParser()
                 }
             }
             ", "
-            AttributeParser(name: "maximumBasalRatePerHour") {
+            AttributeValueParser(name: "maximumBasalRatePerHour") {
                 OptionalParser {
                     Double.parser()
                 }
             }
             ", "
-            AttributeParser(name: "maximumBolus") {
+            AttributeValueParser(name: "maximumBolus") {
                 OptionalParser {
                     Double.parser()
                 }
             }
             ", "
-            AttributeParser(name: "suspendThreshold") {
+            AttributeValueParser(name: "suspendThreshold") {
                 OptionalParser {
                     GlucoseThresholdParser()
                 }
             }
             ", "
-            AttributeParser(name: "automaticDosingStrategy") {
+            AttributeValueParser(name: "automaticDosingStrategy") {
                 AutomaticDosingStrategyParser()
             }
             ", "
-            AttributeParser(name: "defaultRapidActingModel") {
+            AttributeValueParser(name: "defaultRapidActingModel") {
                 OptionalParser {
                     ExponentialInsulinModelPresetParser()
                 }
             }
+            ")"
         }
 
         return p.map { (value) -> LoopSettings in

@@ -32,35 +32,35 @@ struct DoseEntryParser: Parser {
     var body: some Parser<Substring, DoseEntry> {
         let p = Parse {
             "DoseEntry("
-            AttributeParser(name: "type") {
+            AttributeValueParser(name: "type") {
                 DoseTypeParser()
             }
             ", "
-            AttributeParser(name: "startDate") {
+            AttributeValueParser(name: "startDate") {
                 DebugDateParser()
             }
             ", "
-            AttributeParser(name: "endDate") {
+            AttributeValueParser(name: "endDate") {
                 DebugDateParser()
             }
             ", "
-            AttributeParser(name: "value") {
+            AttributeValueParser(name: "value") {
                 Double.parser()
             }
             ", "
-            AttributeParser(name: "unit") {
+            AttributeValueParser(name: "unit") {
                 Prefix() {
                     $0 != ","
                 }
             }
             ", "
-            AttributeParser(name: "deliveredUnits") {
+            AttributeValueParser(name: "deliveredUnits") {
                 OptionalParser {
                     Double.parser()
                 }
             }
             ", "
-            AttributeParser(name: "description") {
+            AttributeValueParser(name: "description") {
                 OptionalParser {
                     Prefix() {
                         $0 != ","
@@ -68,7 +68,7 @@ struct DoseEntryParser: Parser {
                 }
             }
             ", "
-            AttributeParser(name: "insulinType") {
+            AttributeValueParser(name: "insulinType") {
                 OptionalParser {
                     Prefix() {
                         $0 != ","
@@ -76,31 +76,31 @@ struct DoseEntryParser: Parser {
                 }
             }
             ", "
-            AttributeParser(name: "automatic") {
+            AttributeValueParser(name: "automatic") {
                 OptionalParser {
                     Bool.parser()
                 }
             }
             ", "
-            AttributeParser(name: "manuallyEntered") {
+            AttributeValueParser(name: "manuallyEntered") {
                 Bool.parser()
             }
             ", "
-            AttributeParser(name: "syncIdentifier") {
+            AttributeValueParser(name: "syncIdentifier") {
                 Prefix() {
                     $0 != ","
                 }
             }
             ", "
-            AttributeParser(name: "isMutable") {
+            AttributeValueParser(name: "isMutable") {
                 Bool.parser()
             }
             ", "
-            AttributeParser(name: "wasProgrammedByPumpUI") {
+            AttributeValueParser(name: "wasProgrammedByPumpUI") {
                 Bool.parser()
             }
             ", "
-            AttributeParser(name: "scheduledBasalRate") {
+            AttributeValueParser(name: "scheduledBasalRate") {
                 OptionalParser {
                     QuantityParser()
                 }

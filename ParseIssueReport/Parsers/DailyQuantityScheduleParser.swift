@@ -20,50 +20,88 @@ typealias InsulinSensitivitySchedule = SingleQuantitySchedule
 typealias BasalRateSchedule = DailyValueSchedule<Double>
 typealias CarbRatioSchedule = SingleQuantitySchedule
 
+
 struct DailyQuantityScheduleParser<TParser: Parser>: Parser where TParser.Input == Substring {
 
+    // Attributes can be in any order, which makes this parser a little more complicated
     // ["unit": "mg/dL", "timeZone": -25200, "items": [["startTime": 0.0, "value": [90.0, 90.0]]]]
 
     let valueParser: TParser
+
+    private enum DailyQuantityScheduleAttribute {
+        case unit(HKUnit)
+        case timeZone(TimeZone)
+        case items([RepeatingScheduleValue<TParser.Output>])
+    }
 
     init(@ParserBuilder<Input> _ build: () -> TParser) {
         self.valueParser = build()
     }
 
-    var body: some Parser<Substring, DailyQuantitySchedule<TParser.Output>> {
+    func parse(_ input: inout Substring) throws -> DailyQuantitySchedule<TParser.Output> {
         let p = Parse() {
             "["
-            AttributeParser(name: "\"unit\"") {
-                "\""
-                HKUnitParser()
-                "\""
-            }
-            ", "
-            AttributeParser(name: "\"timeZone\"") {
-                TimeZoneParser()
-            }
-            ", "
-            AttributeParser(name: "\"items\"") {
-                "["
-                Many {
-                    RepeatingScheduleValueParser {
-                        valueParser
-                    }
-                } separator: {
-                    ", "
+            Many {
+                OneOf {
+                    AttributeValueParser(name: "\"unit\"") {
+                        "\""
+                        HKUnitParser()
+                        "\""
+                    }.map { DailyQuantityScheduleAttribute.unit($0) }
+                    AttributeValueParser(name: "\"timeZone\"") {
+                        TimeZoneParser()
+                    }.map { DailyQuantityScheduleAttribute.timeZone($0) }
+                    AttributeValueParser(name: "\"items\"") {
+                        "["
+                        Many {
+                            RepeatingScheduleValueParser {
+                                valueParser
+                            }
+                        } separator: {
+                            ", "
+                        }
+                        "]"
+                    }.map { DailyQuantityScheduleAttribute.items($0) }
                 }
-                "]"
+            } separator: {
+                ", "
             }
             "]"
         }
 
-        p.map { (value) -> DailyQuantitySchedule<TParser.Output> in
-            let valueSchedule = DailyValueSchedule(
-                referenceTimeInterval: 0,
-                repeatInterval: 86400,
-                items: value.2,
-                timeZone: value.1)
-            return DailyQuantitySchedule(unit: value.0, valueSchedule: valueSchedule)
+        let attrs = try p.parse(&input)
+
+        var unit: HKUnit? = nil
+        var items: [RepeatingScheduleValue<TParser.Output>] = []
+        var timeZone: TimeZone? = nil
+
+        for attr in attrs {
+            switch attr {
+            case .unit(let parsedUnit):
+                unit = parsedUnit
+            case .items(let parsedItems):
+                items = parsedItems
+            case .timeZone(let parsedTimeZone):
+                timeZone = parsedTimeZone
+            }
         }
+
+        guard let unit else {
+            throw ParsingError.missingAttribute("unit")
+        }
+        guard items.count > 0 else {
+            throw ParsingError.missingAttribute("items")
+        }
+        guard let timeZone else {
+            throw ParsingError.missingAttribute("timeZone")
+        }
+
+        let valueSchedule = DailyValueSchedule(
+            referenceTimeInterval: 0,
+            repeatInterval: 86400,
+            items: items,
+            timeZone: timeZone)
+        return DailyQuantitySchedule(unit: unit, valueSchedule: valueSchedule)
     }
+
 }

@@ -102,31 +102,31 @@ struct TemporaryScheduleOverrideParser: Parser {
     var body: some Parser<Substring, TemporaryScheduleOverride> {
         let p = Parse {
             "LoopKit.TemporaryScheduleOverride("
-            AttributeParser(name: "context") {
+            AttributeValueParser(name: "context") {
                 TemporaryScheduleOverrideContextParser()
             }
             ", "
-            AttributeParser(name: "settings") {
+            AttributeValueParser(name: "settings") {
                 TemporaryScheduleOverrideSettingsParser()
             }
             ", "
-            AttributeParser(name: "startDate") {
+            AttributeValueParser(name: "startDate") {
                 DebugDateParser()
             }
             ", "
-            AttributeParser(name: "enactTrigger") {
+            AttributeValueParser(name: "enactTrigger") {
                 TemporaryScheduleOverrideEnactTriggerParser()
             }
             ", "
-            AttributeParser(name: "syncIdentifier") {
+            AttributeValueParser(name: "syncIdentifier") {
                 UUID.parser()
             }
             ", "
-            AttributeParser(name: "actualEnd") {
+            AttributeValueParser(name: "actualEnd") {
                 EndParser()
             }
             ", "
-            AttributeParser(name: "duration") {
+            AttributeValueParser(name: "duration") {
                 TemporaryScheduleOverrideDurationParser()
             }
             ")"
@@ -174,13 +174,13 @@ struct TemporaryScheduleOverrideSettingsParser: Parser {
     var body: some Parser<Substring, TemporaryScheduleOverrideSettings> {
         let p = Parse {
             "LoopKit.TemporaryScheduleOverrideSettings("
-            AttributeParser(name: "targetRangeInMgdl") {
+            AttributeValueParser(name: "targetRangeInMgdl") {
                 OptionalParser {
                     DoubleRangeParser()
                 }
             }
             ", "
-            AttributeParser(name: "insulinNeedsScaleFactor") {
+            AttributeValueParser(name: "insulinNeedsScaleFactor") {
                 OptionalParser {
                     Double.parser()
                 }
@@ -212,27 +212,27 @@ struct TemporaryScheduleOverridePresetParser: Parser {
     var body: some Parser<Substring, TemporaryScheduleOverridePreset> {
         let p = Parse {
             "LoopKit.TemporaryScheduleOverridePreset("
-            AttributeParser(name: "id") {
+            AttributeValueParser(name: "id") {
                 UUID.parser()
             }
             ", "
-            AttributeParser(name: "symbol") {
+            AttributeValueParser(name: "symbol") {
                 "\""
                 Prefix { $0 != "\"" }
                 "\""
             }
             ", "
-            AttributeParser(name: "name") {
+            AttributeValueParser(name: "name") {
                 "\""
                 Prefix { $0 != "\"" }
                 "\""
             }
             ", "
-            AttributeParser(name: "settings") {
+            AttributeValueParser(name: "settings") {
                 TemporaryScheduleOverrideSettingsParser()
             }
             ", "
-            AttributeParser(name: "duration") {
+            AttributeValueParser(name: "duration") {
                 TemporaryScheduleOverrideDurationParser()
             }
             ")"
