@@ -12,11 +12,15 @@ struct DoubleRangeParser: Parser {
 
     var body: some Parser<Substring, DoubleRange> {
         Parse() {
-            "["
-            Double.parser()
+            "LoopKit.DoubleRange("
+            AttributeParser(name: "minValue") {
+                Double.parser()
+            }
             ", "
-            Double.parser()
-            "]"
+            AttributeParser(name: "maxValue") {
+                Double.parser()
+            }
+            ")"
         }.map { (minValue, maxValue) in
             DoubleRange(minValue: minValue, maxValue: maxValue)
         }

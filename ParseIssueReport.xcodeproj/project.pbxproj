@@ -31,6 +31,7 @@
 		C1CC898129DA4A2B00BE0692 /* DailyQuantityScheduleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC898029DA4A2B00BE0692 /* DailyQuantityScheduleParser.swift */; };
 		C1CC898329DA4AFE00BE0692 /* GlucoseRangeScheduleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC898229DA4AFE00BE0692 /* GlucoseRangeScheduleParser.swift */; };
 		C1CC898529DA565A00BE0692 /* DailyValueScheduleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC898429DA565A00BE0692 /* DailyValueScheduleParser.swift */; };
+		C1CC898729DA5A3C00BE0692 /* TemporaryScheduleOverridePresetParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC898629DA5A3C00BE0692 /* TemporaryScheduleOverridePresetParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		C1CC898029DA4A2B00BE0692 /* DailyQuantityScheduleParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuantityScheduleParser.swift; sourceTree = "<group>"; };
 		C1CC898229DA4AFE00BE0692 /* GlucoseRangeScheduleParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseRangeScheduleParser.swift; sourceTree = "<group>"; };
 		C1CC898429DA565A00BE0692 /* DailyValueScheduleParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyValueScheduleParser.swift; sourceTree = "<group>"; };
+		C1CC898629DA5A3C00BE0692 /* TemporaryScheduleOverridePresetParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryScheduleOverridePresetParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 			children = (
 				C169A7E329D8DAE100194F24 /* AttributeParser.swift */,
 				C1CC898029DA4A2B00BE0692 /* DailyQuantityScheduleParser.swift */,
+				C1CC898429DA565A00BE0692 /* DailyValueScheduleParser.swift */,
 				C169A7E129D8DAB900194F24 /* DebugDateParser.swift */,
 				C1CC897229D9D4AE00BE0692 /* DoseEntryParser.swift */,
 				C1CC897429D9D96900BE0692 /* DoseTypeParser.swift */,
@@ -99,8 +102,8 @@
 				C169A7DF29D8DA9500194F24 /* QuantityParser.swift */,
 				C1CC897E29DA49ED00BE0692 /* RepeatingScheduleValueParser.swift */,
 				C175D4FE29D8DC11006A049C /* StoredGlucoseSampleParser.swift */,
+				C1CC898629DA5A3C00BE0692 /* TemporaryScheduleOverridePresetParser.swift */,
 				C1CC897A29DA2DDC00BE0692 /* TimeZoneParser.swift */,
-				C1CC898429DA565A00BE0692 /* DailyValueScheduleParser.swift */,
 			);
 			path = Parsers;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				C1CC897729DA20A400BE0692 /* LoopSettingsParser.swift in Sources */,
 				C1CC898129DA4A2B00BE0692 /* DailyQuantityScheduleParser.swift in Sources */,
 				C1CC897329D9D4AE00BE0692 /* DoseEntryParser.swift in Sources */,
+				C1CC898729DA5A3C00BE0692 /* TemporaryScheduleOverridePresetParser.swift in Sources */,
 				C169A7E229D8DAB900194F24 /* DebugDateParser.swift in Sources */,
 				C1CC897F29DA49ED00BE0692 /* RepeatingScheduleValueParser.swift in Sources */,
 				C1CC897D29DA3B6200BE0692 /* DoubleRangeParser.swift in Sources */,

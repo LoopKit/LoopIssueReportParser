@@ -24,11 +24,11 @@ StoredGlucoseSample(uuid: Optional(CCE10870-2DAB-40D7-9F49-A71EB4620A43), proven
     func parse() -> String {
 
         let s = """
-LoopKit.GlucoseRangeSchedule(override: nil, rangeSchedule: ["unit": "mg/dL", "timeZone": -25200, "items": [["startTime": 0.0, "value": [90.0, 90.0]]]])
+LoopKit.TemporaryScheduleOverridePreset(id: B2A8A01C-9BA9-4E88-999F-5F2D441C8A98, symbol: "🚶‍♂️", name: "Walking", settings: LoopKit.TemporaryScheduleOverrideSettings(targetRangeInMgdl: Optional(LoopKit.DoubleRange(minValue: 150.0, maxValue: 160.0)), insulinNeedsScaleFactor: Optional(0.7)), duration: LoopKit.TemporaryScheduleOverride.Duration.indefinite)
 """
 
         do {
-            let p = GlucoseRangeScheduleParser()
+            let p = TemporaryScheduleOverridePresetParser()
             let r = try p.parse(s)
 
             print(r)

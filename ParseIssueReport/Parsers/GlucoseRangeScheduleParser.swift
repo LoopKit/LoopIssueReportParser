@@ -37,7 +37,15 @@ struct GlucoseRangeScheduleParser: Parser {
             ", "
             AttributeParser(name: "rangeSchedule") {
                 DailyQuantityScheduleParser {
-                    DoubleRangeParser()
+                    Parse() {
+                        "["
+                        Double.parser()
+                        ", "
+                        Double.parser()
+                        "]"
+                    }.map { (minValue, maxValue) in
+                        DoubleRange(minValue: minValue, maxValue: maxValue)
+                    }
                 }
             }
             ")"
