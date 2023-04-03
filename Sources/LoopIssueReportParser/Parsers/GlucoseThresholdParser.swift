@@ -12,6 +12,10 @@ import HealthKit
 struct GlucoseThreshold {
     let unit: HKUnit
     let value: Double
+
+    var quantity: HKQuantity {
+        return HKQuantity(unit: unit, doubleValue: value)
+    }
 }
 
 struct GlucoseThresholdParser: Parser {
