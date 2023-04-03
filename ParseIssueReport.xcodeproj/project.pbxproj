@@ -40,6 +40,7 @@
 		C1CC899629DB1BAD00BE0692 /* BuildDetailsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC899529DB1BAD00BE0692 /* BuildDetailsParser.swift */; };
 		C1CC899829DB239500BE0692 /* RestOfLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC899729DB239500BE0692 /* RestOfLine.swift */; };
 		C1CC899A29DB287400BE0692 /* AttributeValueParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC899929DB287400BE0692 /* AttributeValueParser.swift */; };
+		C1CC899C29DB46A500BE0692 /* DeviceCommunicationLogEntryParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC899B29DB46A500BE0692 /* DeviceCommunicationLogEntryParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,7 @@
 		C1CC899529DB1BAD00BE0692 /* BuildDetailsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildDetailsParser.swift; sourceTree = "<group>"; };
 		C1CC899729DB239500BE0692 /* RestOfLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestOfLine.swift; sourceTree = "<group>"; };
 		C1CC899929DB287400BE0692 /* AttributeValueParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributeValueParser.swift; sourceTree = "<group>"; };
+		C1CC899B29DB46A500BE0692 /* DeviceCommunicationLogEntryParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCommunicationLogEntryParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				C1CC898029DA4A2B00BE0692 /* DailyQuantityScheduleParser.swift */,
 				C1CC898429DA565A00BE0692 /* DailyValueScheduleParser.swift */,
 				C169A7E129D8DAB900194F24 /* DebugDateParser.swift */,
+				C1CC899B29DB46A500BE0692 /* DeviceCommunicationLogEntryParser.swift */,
 				C1CC897229D9D4AE00BE0692 /* DoseEntryParser.swift */,
 				C1CC897429D9D96900BE0692 /* DoseTypeParser.swift */,
 				C1CC897C29DA3B6200BE0692 /* DoubleRangeParser.swift */,
@@ -280,6 +283,7 @@
 				C1CC897329D9D4AE00BE0692 /* DoseEntryParser.swift in Sources */,
 				C1CC898729DA5A3C00BE0692 /* TemporaryScheduleOverridePresetParser.swift in Sources */,
 				C169A7E229D8DAB900194F24 /* DebugDateParser.swift in Sources */,
+				C1CC899C29DB46A500BE0692 /* DeviceCommunicationLogEntryParser.swift in Sources */,
 				C1CC897F29DA49ED00BE0692 /* RepeatingScheduleValueParser.swift in Sources */,
 				C1CC897D29DA3B6200BE0692 /* DoubleRangeParser.swift in Sources */,
 				C1CC899829DB239500BE0692 /* RestOfLine.swift in Sources */,

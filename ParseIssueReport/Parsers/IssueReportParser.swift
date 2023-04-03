@@ -10,9 +10,10 @@ import Parsing
 
 struct IssueReport {
     let buildDetails: BuildDetails
+    let deviceLogs: [DeviceCommunicationLogEntry]
     let loopSettings: LoopSettings
-    let cachedDoseEntries: [DoseEntry]
     let cachedGlucoseSamples: [StoredGlucoseSample]
+    let cachedDoseEntries: [DoseEntry]
 }
 
 struct IssueReportParser: Parser {
@@ -21,6 +22,14 @@ struct IssueReportParser: Parser {
         let p = Parse {
             Skip { PrefixUpTo("## Build Details") }
             BuildDetailsParser()
+            Skip { PrefixUpTo("## Device Communication Log") }
+            "## Device Communication Log"
+            Whitespace(.vertical)
+            Many {
+                DeviceCommunicationLogEntryParser()
+            } separator: {
+                Whitespace(.vertical)
+            }
             Skip { PrefixUpTo("## LoopDataManager") }
             "## LoopDataManager"
             Whitespace(.vertical)
@@ -50,9 +59,10 @@ struct IssueReportParser: Parser {
         return p.map { value in
             IssueReport(
                 buildDetails: value.0,
-                loopSettings: value.1,
-                cachedDoseEntries: value.3,
-                cachedGlucoseSamples: value.2
+                deviceLogs: value.1,
+                loopSettings: value.2,
+                cachedGlucoseSamples: value.3,
+                cachedDoseEntries: value.4
             )
         }
     }
