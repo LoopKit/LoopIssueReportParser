@@ -26,6 +26,7 @@ struct LoopSettings {
     let preMealTargetRange: ClosedRange<HKQuantity>?
     let legacyWorkoutTargetRange: ClosedRange<HKQuantity>?
     let overridePresets: [TemporaryScheduleOverridePreset]
+    let scheduleOverride: TemporaryScheduleOverride?
 }
 
 struct LoopSettingsParser: Parser {
@@ -103,6 +104,12 @@ struct LoopSettingsParser: Parser {
                 }
                 "]"
             }
+            ", "
+            AttributeParser(name: "scheduleOverride") {
+                OptionalParser {
+                    TemporaryScheduleOverrideParser()
+                }
+            }
         }
 
         return p.map { (value) -> LoopSettings in
@@ -114,7 +121,8 @@ struct LoopSettingsParser: Parser {
                 carbRatioSchedule: value.4,
                 preMealTargetRange: value.5,
                 legacyWorkoutTargetRange: value.6,
-                overridePresets: value.7
+                overridePresets: value.7,
+                scheduleOverride: value.8
             )
         }
     }
