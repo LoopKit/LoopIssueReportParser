@@ -13,6 +13,7 @@ struct IssueReport {
     let deviceLogs: [DeviceCommunicationLogEntry]
     let loopSettings: LoopSettings
     let cachedGlucoseSamples: [StoredGlucoseSample]
+    let cachedCarbEntries: [StoredCarbEntry]
     let cachedDoseEntries: [DoseEntry]
 }
 
@@ -46,6 +47,18 @@ struct IssueReportParser: Parser {
                 Whitespace(.vertical)
             }
             Whitespace(.vertical)
+            Skip { PrefixUpTo("cachedCarbEntries:") }
+            "cachedCarbEntries:"
+            Whitespace(.vertical)
+            "["
+            Whitespace(.vertical)
+            "\tStoredCarbEntry(uuid, provenanceIdentifier, syncIdentifier, syncVersion, startDate, quantity, foodType, absorptionTime, createdByCurrentApp, userCreatedDate, userUpdatedDate)"
+            Whitespace(.vertical)
+            Many {
+                StoredCarbEntryParser()
+            } separator: {
+                Whitespace(.vertical)
+            }
             Skip { PrefixUpTo("#### cachedDoseEntries") }
             "#### cachedDoseEntries"
             Whitespace(.vertical)
@@ -62,7 +75,8 @@ struct IssueReportParser: Parser {
                 deviceLogs: value.1,
                 loopSettings: value.2,
                 cachedGlucoseSamples: value.3,
-                cachedDoseEntries: value.4
+                cachedCarbEntries: value.4,
+                cachedDoseEntries: value.5
             )
         }
     }

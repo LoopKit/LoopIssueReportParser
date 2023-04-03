@@ -71,7 +71,7 @@ struct DoseEntryParser: Parser {
             AttributeValueParser(name: "insulinType") {
                 OptionalParser {
                     Prefix() {
-                        $0 != ","
+                        $0 != ")"
                     }
                 }
             }
