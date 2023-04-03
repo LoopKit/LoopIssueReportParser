@@ -11,9 +11,10 @@ import Parsing
 struct HKUnitParser: Parser {
     var body: some Parser<Substring, HKUnit> {
         OneOf {
-            "mg/dL".map { HKUnit.milligramsPerDeciliter }
+            "mg/dL".map     { HKUnit.milligramsPerDeciliter }
             "mg/min·dL".map { HKUnit.milligramsPerDeciliter.unitDivided(by: .minute()) }
-            "IU/hr".map { HKUnit.internationalUnitsPerHour }
+            "IU/hr".map     { HKUnit.internationalUnitsPerHour }
+            "g".map         { HKUnit.gram() }
         }
     }
 }

@@ -9,6 +9,7 @@ import HealthKit
 import Parsing
 
 struct IssueReport {
+    let loopSettings: LoopSettings
     let cachedDoseEntries: [DoseEntry]
     let cachedGlucoseSamples: [StoredGlucoseSample]
 }
@@ -19,6 +20,9 @@ struct IssueReportParser: Parser {
         let p = Parse {
             "## LoopDataManager"
             Whitespace(.vertical)
+            AttributeParser(name: "settings") {
+                LoopSettingsParser()
+            }
             "#### cachedDoseEntries"
             Whitespace(.vertical)
             Many {
@@ -37,8 +41,9 @@ struct IssueReportParser: Parser {
         }
         return p.map { value in
             IssueReport(
-                cachedDoseEntries: value.0,
-                cachedGlucoseSamples: value.1
+                loopSettings: value.0,
+                cachedDoseEntries: value.1,
+                cachedGlucoseSamples: value.2
             )
         }
     }

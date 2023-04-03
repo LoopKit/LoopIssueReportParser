@@ -30,6 +30,7 @@
 		C1CC897F29DA49ED00BE0692 /* RepeatingScheduleValueParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC897E29DA49ED00BE0692 /* RepeatingScheduleValueParser.swift */; };
 		C1CC898129DA4A2B00BE0692 /* DailyQuantityScheduleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC898029DA4A2B00BE0692 /* DailyQuantityScheduleParser.swift */; };
 		C1CC898329DA4AFE00BE0692 /* GlucoseRangeScheduleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC898229DA4AFE00BE0692 /* GlucoseRangeScheduleParser.swift */; };
+		C1CC898529DA565A00BE0692 /* DailyValueScheduleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC898429DA565A00BE0692 /* DailyValueScheduleParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		C1CC897E29DA49ED00BE0692 /* RepeatingScheduleValueParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatingScheduleValueParser.swift; sourceTree = "<group>"; };
 		C1CC898029DA4A2B00BE0692 /* DailyQuantityScheduleParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuantityScheduleParser.swift; sourceTree = "<group>"; };
 		C1CC898229DA4AFE00BE0692 /* GlucoseRangeScheduleParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseRangeScheduleParser.swift; sourceTree = "<group>"; };
+		C1CC898429DA565A00BE0692 /* DailyValueScheduleParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyValueScheduleParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				C1CC897E29DA49ED00BE0692 /* RepeatingScheduleValueParser.swift */,
 				C175D4FE29D8DC11006A049C /* StoredGlucoseSampleParser.swift */,
 				C1CC897A29DA2DDC00BE0692 /* TimeZoneParser.swift */,
+				C1CC898429DA565A00BE0692 /* DailyValueScheduleParser.swift */,
 			);
 			path = Parsers;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				C17204C929D7313F00EA788D /* OptionalParser.swift in Sources */,
 				C169A7DD29D8C5F600194F24 /* HKUnit.swift in Sources */,
 				C169A7E829D8DB4400194F24 /* ParsingError.swift in Sources */,
+				C1CC898529DA565A00BE0692 /* DailyValueScheduleParser.swift in Sources */,
 				C1CC897529D9D96900BE0692 /* DoseTypeParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

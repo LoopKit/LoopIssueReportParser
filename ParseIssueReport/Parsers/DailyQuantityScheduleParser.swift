@@ -10,18 +10,15 @@ import Parsing
 import HealthKit
 
 
-struct DailyValueSchedule<T> {
-    let referenceTimeInterval: TimeInterval
-    let repeatInterval: TimeInterval
-
-    public let items: [RepeatingScheduleValue<T>]
-    public var timeZone: TimeZone
-}
-
 struct DailyQuantitySchedule<T> {
     let unit: HKUnit
     let valueSchedule: DailyValueSchedule<T>
 }
+
+typealias SingleQuantitySchedule = DailyQuantitySchedule<Double>
+typealias InsulinSensitivitySchedule = SingleQuantitySchedule
+typealias BasalRateSchedule = DailyValueSchedule<Double>
+typealias CarbRatioSchedule = SingleQuantitySchedule
 
 struct DailyQuantityScheduleParser<TParser: Parser>: Parser where TParser.Input == Substring {
 

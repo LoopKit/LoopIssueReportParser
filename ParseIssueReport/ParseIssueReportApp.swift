@@ -28,12 +28,10 @@ LoopKit.GlucoseRangeSchedule(override: nil, rangeSchedule: ["unit": "mg/dL", "ti
 """
 
         do {
-
             let p = GlucoseRangeScheduleParser()
             let r = try p.parse(s)
 
             print(r)
-
 
             let issueReport = try IssueReportParser().parse(input)
             return "Issue report = \(issueReport)"
