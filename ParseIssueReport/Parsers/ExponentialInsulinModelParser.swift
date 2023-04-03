@@ -1,0 +1,40 @@
+//
+//  ExponentialInsulinModelParser.swift
+//  ParseIssueReport
+//
+//  Created by Pete Schwamb on 4/3/23.
+//
+
+import Foundation
+import Parsing
+
+struct ExponentialInsulinModel {
+    let actionDuration: TimeInterval
+    let peakActivityTime: TimeInterval
+    let delay: TimeInterval
+}
+
+
+struct ExponentialInsulinModelParser: Parser {
+    // ExponentialInsulinModel(actionDuration: 21600.0, peakActivityTime: 4500.0, delay: 600.0)
+    var body: some Parser<Substring, ExponentialInsulinModel> {
+        Parse() {
+            "ExponentialInsulinModel("
+            AttributeParser(name: "actionDuration") {
+                Double.parser()
+            }
+            ", "
+            AttributeParser(name: "peakActivityTime") {
+                Double.parser()
+            }
+            ", "
+            AttributeParser(name: "delay") {
+                Double.parser()
+            }
+            ")"
+        }.map { (duration, peak, delay) in
+            ExponentialInsulinModel(actionDuration: duration, peakActivityTime: peak, delay: delay)
+        }
+    }
+
+}

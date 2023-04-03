@@ -32,6 +32,7 @@ struct LoopSettings {
     let maximumBolus: Double?
     let suspendThreshold: GlucoseThreshold?
     let automaticDosingStrategy: AutomaticDosingStrategy
+    let defaultRapidActingModel: ExponentialInsulinModelPreset?
 }
 
 struct LoopSettingsParser: Parser {
@@ -143,6 +144,12 @@ struct LoopSettingsParser: Parser {
             AttributeParser(name: "automaticDosingStrategy") {
                 AutomaticDosingStrategyParser()
             }
+            ", "
+            AttributeParser(name: "defaultRapidActingModel") {
+                OptionalParser {
+                    ExponentialInsulinModelPresetParser()
+                }
+            }
         }
 
         return p.map { (value) -> LoopSettings in
@@ -160,7 +167,8 @@ struct LoopSettingsParser: Parser {
                 maximumBasalRatePerHour: value.1,
                 maximumBolus: value.2,
                 suspendThreshold: value.3,
-                automaticDosingStrategy: value.4
+                automaticDosingStrategy: value.4,
+                defaultRapidActingModel: value.5
             )
         }
     }

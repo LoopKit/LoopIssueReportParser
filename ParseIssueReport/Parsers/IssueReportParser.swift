@@ -23,6 +23,7 @@ struct IssueReportParser: Parser {
             AttributeParser(name: "settings") {
                 LoopSettingsParser()
             }
+            Whitespace(.vertical)
             "#### cachedDoseEntries"
             Whitespace(.vertical)
             Many {
