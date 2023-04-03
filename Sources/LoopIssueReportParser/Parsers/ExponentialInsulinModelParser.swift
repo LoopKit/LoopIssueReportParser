@@ -8,7 +8,7 @@
 import Foundation
 import Parsing
 
-struct ExponentialInsulinModel {
+public struct ExponentialInsulinModel {
     let actionDuration: TimeInterval
     let peakActivityTime: TimeInterval
     let delay: TimeInterval

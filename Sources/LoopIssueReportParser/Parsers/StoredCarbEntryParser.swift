@@ -9,52 +9,23 @@ import Foundation
 import Parsing
 import HealthKit
 
-struct StoredCarbEntry {
-    let uuid: UUID?
-    let provenanceIdentifier: String
-    let syncIdentifier: String?
-    let syncVersion: Int?
-    let startDate: Date
-    let quantity: HKQuantity
-    let foodType: String?
-    let absorptionTime: TimeInterval?
-    let createdByCurrentApp: Bool
-    let userCreatedDate: Date?
-    let userUpdatedDate: Date?
+public struct StoredCarbEntry {
+    public let uuid: UUID?
+    public let provenanceIdentifier: String
+    public let syncIdentifier: String?
+    public let syncVersion: Int?
+    public let startDate: Date
+    public let quantity: HKQuantity
+    public let foodType: String?
+    public let absorptionTime: TimeInterval?
+    public let createdByCurrentApp: Bool
+    public let userCreatedDate: Date?
+    public let userUpdatedDate: Date?
 }
 
-struct OptionalCarbDate: Parser {
-    // ""
-    // Optional(2023-03-22 09:07:31 +0000)
-    // nil
-    var body: some Parser<Substring, Date?> {
-        OptionalParser {
-            DebugDateParser()
-        }
-    }
-}
+public struct StoredCarbEntryParser: Parser {
 
-struct StoredCarbEntryParser: Parser {
-
-    //     , 05349326-AC30-4BE7-BAB5-2FBDCABEEA19, com.SL7D2777F3.loopkit.Loop, 1B4BCDB7-3CF7-46DD-A874-5D39662BE4D9, Optional(1), 2023-03-22 09:07:29 +0000, 5 g, 🌮, 10800.0, true, Optional(2023-03-22 09:07:31 +0000),
-
-//    return [
-//        "\t",
-//        entry.uuid?.uuidString ?? "",
-//        entry.provenanceIdentifier,
-//        entry.syncIdentifier ?? "",
-//        entry.syncVersion != nil ? String(describing: entry.syncVersion) : "",
-//        String(describing: entry.startDate),
-//        String(describing: entry.quantity),
-//        entry.foodType ?? "",
-//        String(describing: entry.absorptionTime ?? self.defaultAbsorptionTimes.medium),
-//        String(describing: entry.createdByCurrentApp),
-//        entry.userCreatedDate != nil ? String(describing: entry.userCreatedDate) : "",
-//        entry.userUpdatedDate != nil ? String(describing: entry.userUpdatedDate) : "",
-//    ].joined(separator: ", ")
-//
-
-    var body: some Parser<Substring, StoredCarbEntry> {
+    public var body: some Parser<Substring, StoredCarbEntry> {
         Parse {
             Whitespace(.horizontal)
             ", "

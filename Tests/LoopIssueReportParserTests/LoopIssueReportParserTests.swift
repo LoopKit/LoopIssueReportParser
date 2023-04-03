@@ -27,6 +27,5 @@ final class LoopIssueReportParserTests: XCTestCase {
 
         XCTAssertEqual(issueReport.loopSettings.automaticDosingStrategy, .tempBasalOnly)
         XCTAssertEqual(issueReport.loopSettings.overridePresets.count, 0)
-
     }
 }

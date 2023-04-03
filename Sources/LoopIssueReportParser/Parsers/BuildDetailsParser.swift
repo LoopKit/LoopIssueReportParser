@@ -7,19 +7,19 @@
 
 import Parsing
 
-struct BuildDetails {
-    let appNameAndVersion: String
-    let profileExpiration: String
-    let gitRevision: String
-    let gitBranch: String
-    let workspaceGitRevision: String
-    let workspaceGitBranch: String
-    let sourceRoot: String
-    let buildDateString: String
-    let xcodeVersion: String
+public struct BuildDetails {
+    public let appNameAndVersion: String
+    public let profileExpiration: String
+    public let gitRevision: String
+    public let gitBranch: String
+    public let workspaceGitRevision: String
+    public let workspaceGitBranch: String
+    public let sourceRoot: String
+    public let buildDateString: String
+    public let xcodeVersion: String
 }
 
-struct BuildDetailsParser: Parser {
+public struct BuildDetailsParser: Parser {
     /*
      * appNameAndVersion: Loop v3.2.0 (3)
      * profileExpiration: 2024-03-16 20:07:55 +0000
@@ -32,7 +32,7 @@ struct BuildDetailsParser: Parser {
      * xcodeVersion: 14B47b
      */
 
-    var body: some Parser<Substring, BuildDetails> {
+    public var body: some Parser<Substring, BuildDetails> {
         Parse(input: Substring.self, BuildDetails.init(appNameAndVersion:profileExpiration:gitRevision:gitBranch:workspaceGitRevision:workspaceGitBranch:sourceRoot:buildDateString:xcodeVersion:)) {
             "## Build Details"
             Whitespace(.vertical)

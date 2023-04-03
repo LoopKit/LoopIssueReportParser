@@ -8,18 +8,18 @@
 import HealthKit
 import Parsing
 
-struct IssueReport {
-    let buildDetails: BuildDetails
-    let deviceLogs: [DeviceCommunicationLogEntry]
-    let loopSettings: LoopSettings
-    let cachedGlucoseSamples: [StoredGlucoseSample]
-    let cachedCarbEntries: [StoredCarbEntry]
-    let cachedDoseEntries: [DoseEntry]
+public struct IssueReport {
+    public let buildDetails: BuildDetails
+    public let deviceLogs: [DeviceCommunicationLogEntry]
+    public let loopSettings: LoopSettings
+    public let cachedGlucoseSamples: [StoredGlucoseSample]
+    public let cachedCarbEntries: [StoredCarbEntry]
+    public let cachedDoseEntries: [DoseEntry]
 }
 
-struct IssueReportParser: Parser {
+public struct IssueReportParser: Parser {
 
-    var body: some Parser<Substring, IssueReport> {
+    public var body: some Parser<Substring, IssueReport> {
         let p = Parse {
             Skip { PrefixUpTo("## Build Details") }
             BuildDetailsParser()

@@ -8,12 +8,12 @@
 import Parsing
 import Foundation
 
-struct RepeatingScheduleValue<T> {
+public struct RepeatingScheduleValue<T> {
     public var startTime: TimeInterval
     public var value: T
 }
 
-struct RepeatingScheduleValueParser<TParser: Parser>: Parser where TParser.Input == Substring {
+public struct RepeatingScheduleValueParser<TParser: Parser>: Parser where TParser.Input == Substring {
     // Attributes can be in any order
     // ["startTime": 0.0, "value": [90.0, 90.0]]
 
@@ -28,7 +28,7 @@ struct RepeatingScheduleValueParser<TParser: Parser>: Parser where TParser.Input
         self.valueParser = build()
     }
 
-    func parse(_ input: inout Substring) throws -> RepeatingScheduleValue<TParser.Output> {
+    public func parse(_ input: inout Substring) throws -> RepeatingScheduleValue<TParser.Output> {
         let p = Parse() {
             "["
             Many {

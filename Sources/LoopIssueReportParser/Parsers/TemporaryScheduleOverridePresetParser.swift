@@ -32,38 +32,37 @@ struct EndParser: Parser {
     }
 }
 
-struct TemporaryScheduleOverride {
-    enum Context {
+public struct TemporaryScheduleOverride {
+    public enum Context {
         case preMeal
         case legacyWorkout
         case preset(TemporaryScheduleOverridePreset)
         case custom
     }
 
-    enum EnactTrigger {
+    public enum EnactTrigger {
         case local
         case remote(String)
     }
 
-    enum Duration {
+    public enum Duration {
         case finite(TimeInterval)
         case indefinite
     }
 
-    let context: Context
-    let settings: TemporaryScheduleOverrideSettings
-    let startDate: Date
-    let enactTrigger: EnactTrigger
-    let syncIdentifier: UUID
-
-    let actualEnd: End
-    let duration: Duration
+    public let context: Context
+    public let settings: TemporaryScheduleOverrideSettings
+    public let startDate: Date
+    public let enactTrigger: EnactTrigger
+    public let syncIdentifier: UUID
+    public let actualEnd: End
+    public let duration: Duration
 
 }
 
-struct TemporaryScheduleOverrideContextParser: Parser {
+public struct TemporaryScheduleOverrideContextParser: Parser {
     // LoopKit.TemporaryScheduleOverride.Context.preset(LoopKit.TemporaryScheduleOverridePreset(id: 4F2BFF2D-0870-4976-95E1-3F237A8DEF57, symbol: "💃", name: "GIM", settings: LoopKit.TemporaryScheduleOverrideSettings(targetRangeInMgdl: Optional(LoopKit.DoubleRange(minValue: 120.0, maxValue: 140.0)), insulinNeedsScaleFactor: Optional(0.2))
-    var body: some Parser<Substring, TemporaryScheduleOverride.Context> {
+    public var body: some Parser<Substring, TemporaryScheduleOverride.Context> {
         "LoopKit.TemporaryScheduleOverride.Context."
         OneOf {
             "preMeal".map { TemporaryScheduleOverride.Context.preMeal }
@@ -79,10 +78,10 @@ struct TemporaryScheduleOverrideContextParser: Parser {
     }
 }
 
-struct TemporaryScheduleOverrideEnactTriggerParser: Parser {
+public struct TemporaryScheduleOverrideEnactTriggerParser: Parser {
     // LoopKit.TemporaryScheduleOverride.EnactTrigger.local
     // LoopKit.TemporaryScheduleOverride.EnactTrigger.remote("192.168.0.3")
-    var body: some Parser<Substring, TemporaryScheduleOverride.EnactTrigger> {
+    public var body: some Parser<Substring, TemporaryScheduleOverride.EnactTrigger> {
         "LoopKit.TemporaryScheduleOverride.EnactTrigger."
         OneOf {
             "local".map { TemporaryScheduleOverride.EnactTrigger.local }
@@ -96,10 +95,10 @@ struct TemporaryScheduleOverrideEnactTriggerParser: Parser {
     }
 }
 
-struct TemporaryScheduleOverrideParser: Parser {
+public struct TemporaryScheduleOverrideParser: Parser {
     // LoopKit.TemporaryScheduleOverride(context: LoopKit.TemporaryScheduleOverride.Context.preset(LoopKit.TemporaryScheduleOverridePreset(id: 4F2BFF2D-0870-4976-95E1-3F237A8DEF57, symbol: "💃", name: "GIM", settings: LoopKit.TemporaryScheduleOverrideSettings(targetRangeInMgdl: Optional(LoopKit.DoubleRange(minValue: 120.0, maxValue: 140.0)), insulinNeedsScaleFactor: Optional(0.2)), duration: LoopKit.TemporaryScheduleOverride.Duration.finite(4500.0))), settings: LoopKit.TemporaryScheduleOverrideSettings(targetRangeInMgdl: Optional(LoopKit.DoubleRange(minValue: 120.0, maxValue: 140.0)), insulinNeedsScaleFactor: Optional(0.2)), startDate: 2023-01-30 18:10:14 +0000, enactTrigger: LoopKit.TemporaryScheduleOverride.EnactTrigger.local, syncIdentifier: F5C92E4C-363C-4168-ACE7-25B2B51944B7, actualEnd: LoopKit.End.natural, duration: LoopKit.TemporaryScheduleOverride.Duration.finite(4500.0)))
 
-    var body: some Parser<Substring, TemporaryScheduleOverride> {
+    public var body: some Parser<Substring, TemporaryScheduleOverride> {
         let p = Parse {
             "LoopKit.TemporaryScheduleOverride("
             AttributeValueParser(name: "context") {
@@ -146,10 +145,10 @@ struct TemporaryScheduleOverrideParser: Parser {
     }
 }
 
-struct TemporaryScheduleOverrideDurationParser: Parser {
+public struct TemporaryScheduleOverrideDurationParser: Parser {
     // LoopKit.TemporaryScheduleOverride.Duration.indefinite
     // LoopKit.TemporaryScheduleOverride.Duration.finite(5400.0)
-    var body: some Parser<Substring, TemporaryScheduleOverride.Duration> {
+    public var body: some Parser<Substring, TemporaryScheduleOverride.Duration> {
         "LoopKit.TemporaryScheduleOverride.Duration."
         OneOf {
             "indefinite".map { TemporaryScheduleOverride.Duration.indefinite }
@@ -164,14 +163,14 @@ struct TemporaryScheduleOverrideDurationParser: Parser {
 }
 
 
-struct TemporaryScheduleOverrideSettings {
+public struct TemporaryScheduleOverrideSettings {
     var targetRangeInMgdl: DoubleRange?
     var insulinNeedsScaleFactor: Double?
 }
 
-struct TemporaryScheduleOverrideSettingsParser: Parser {
+public struct TemporaryScheduleOverrideSettingsParser: Parser {
     // LoopKit.TemporaryScheduleOverrideSettings(targetRangeInMgdl: Optional(LoopKit.DoubleRange(minValue: 150.0, maxValue: 160.0)), insulinNeedsScaleFactor: Optional(0.7))
-    var body: some Parser<Substring, TemporaryScheduleOverrideSettings> {
+    public var body: some Parser<Substring, TemporaryScheduleOverrideSettings> {
         let p = Parse {
             "LoopKit.TemporaryScheduleOverrideSettings("
             AttributeValueParser(name: "targetRangeInMgdl") {
@@ -198,7 +197,7 @@ struct TemporaryScheduleOverrideSettingsParser: Parser {
 }
 
 
-struct TemporaryScheduleOverridePreset {
+public struct TemporaryScheduleOverridePreset {
     public let id: UUID
     public var symbol: String
     public var name: String
@@ -206,10 +205,10 @@ struct TemporaryScheduleOverridePreset {
     public var duration: TemporaryScheduleOverride.Duration
 }
 
-struct TemporaryScheduleOverridePresetParser: Parser {
+public struct TemporaryScheduleOverridePresetParser: Parser {
     // LoopKit.TemporaryScheduleOverridePreset(id: B2A8A01C-9BA9-4E88-999F-5F2D441C8A98, symbol: "🚶‍♂️", name: "Walking", settings: LoopKit.TemporaryScheduleOverrideSettings(targetRangeInMgdl: Optional(LoopKit.DoubleRange(minValue: 150.0, maxValue: 160.0)), insulinNeedsScaleFactor: Optional(0.7)), duration: LoopKit.TemporaryScheduleOverride.Duration.indefinite)
 
-    var body: some Parser<Substring, TemporaryScheduleOverridePreset> {
+    public var body: some Parser<Substring, TemporaryScheduleOverridePreset> {
         let p = Parse {
             "LoopKit.TemporaryScheduleOverridePreset("
             AttributeValueParser(name: "id") {

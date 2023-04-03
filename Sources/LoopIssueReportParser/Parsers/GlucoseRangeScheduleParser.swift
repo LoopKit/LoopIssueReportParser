@@ -8,12 +8,12 @@
 import Foundation
 import Parsing
 
-struct DoubleRange {
-    let minValue: Double
-    let maxValue: Double
+public struct DoubleRange {
+    public let minValue: Double
+    public let maxValue: Double
 }
 
-struct GlucoseRangeSchedule {
+public struct GlucoseRangeSchedule {
 
     // LoopKit.GlucoseRangeSchedule(override: nil, rangeSchedule: ["unit": "mg/dL", "timeZone": -25200, "items": [["startTime": 0.0, "value": [90.0, 90.0]]]])
 
@@ -22,7 +22,7 @@ struct GlucoseRangeSchedule {
     }
 
     let override: Override?
-    let rangeSchedule: DailyQuantitySchedule<DoubleRange>
+    public let rangeSchedule: DailyQuantitySchedule<DoubleRange>
 }
 
 struct GlucoseRangeScheduleParser: Parser {

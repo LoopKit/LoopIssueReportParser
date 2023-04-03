@@ -8,15 +8,14 @@
 import Foundation
 import Parsing
 
-struct DailyValueSchedule<T> {
-    let referenceTimeInterval: TimeInterval
-    let repeatInterval: TimeInterval
-
+public struct DailyValueSchedule<T> {
+    public let referenceTimeInterval: TimeInterval
+    public let repeatInterval: TimeInterval
     public let items: [RepeatingScheduleValue<T>]
     public var timeZone: TimeZone
 }
 
-struct DailyValueScheduleParser<TParser: Parser>: Parser where TParser.Input == Substring {
+public struct DailyValueScheduleParser<TParser: Parser>: Parser where TParser.Input == Substring {
 
     // Attributes can be in any order
     // ["timeZone": -25200, "items": [["startTime": 0.0, "value": [90.0, 90.0]]]]
@@ -32,7 +31,7 @@ struct DailyValueScheduleParser<TParser: Parser>: Parser where TParser.Input == 
         self.valueParser = build()
     }
 
-    func parse(_ input: inout Substring) throws -> DailyValueSchedule<TParser.Output> {
+    public func parse(_ input: inout Substring) throws -> DailyValueSchedule<TParser.Output> {
         let p = Parse() {
             "["
             Many {

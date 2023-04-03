@@ -7,7 +7,7 @@
 
 import Parsing
 
-enum ExponentialInsulinModelPreset {
+public enum ExponentialInsulinModelPreset {
     case rapidActingAdult(ExponentialInsulinModel)
     case rapidActingChild(ExponentialInsulinModel)
     case fiasp(ExponentialInsulinModel)

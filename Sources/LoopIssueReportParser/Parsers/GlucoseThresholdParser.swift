@@ -9,19 +9,19 @@ import Foundation
 import Parsing
 import HealthKit
 
-struct GlucoseThreshold {
-    let unit: HKUnit
-    let value: Double
+public struct GlucoseThreshold {
+    public let unit: HKUnit
+    public let value: Double
 
-    var quantity: HKQuantity {
+    public var quantity: HKQuantity {
         return HKQuantity(unit: unit, doubleValue: value)
     }
 }
 
-struct GlucoseThresholdParser: Parser {
+public struct GlucoseThresholdParser: Parser {
     // LoopKit.GlucoseThreshold(value: 80.0, unit: mg/dL)
 
-    var body: some Parser<Substring, GlucoseThreshold> {
+    public var body: some Parser<Substring, GlucoseThreshold> {
         Parse() {
             "LoopKit.GlucoseThreshold("
             AttributeValueParser(name: "value") {

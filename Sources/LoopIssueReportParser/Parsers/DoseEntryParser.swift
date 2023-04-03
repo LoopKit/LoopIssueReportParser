@@ -10,26 +10,26 @@ import HealthKit
 
 // DoseEntry(type: LoopKit.DoseType.basal, startDate: 2023-03-18 23:18:10 +0000, endDate: 2023-03-19 00:38:08 +0000, value: 1.6, unit: LoopKit.DoseUnit.units, deliveredUnits: nil, description: nil, insulinType: nil, automatic: Optional(true), manuallyEntered: false, syncIdentifier: Optional("BasalRateSchedule 2023-03-18T23:18:10Z 2023-03-19T00:38:08Z"), isMutable: false, wasProgrammedByPumpUI: false, scheduledBasalRate: Optional(1.2 IU/hr))
 
-struct DoseEntry {
-    let type: DoseType
-    let startDate: Date
-    let endDate: Date
-    let value: Double
-    let unit: String
-    let deliveredUnits: Double?
-    let description: String?
-    let insulinType: String?
-    let automatic: Bool?
-    let manuallyEntered: Bool
-    let syncIdentifier: String
-    let isMutable: Bool
-    let wasProgrammedByPumpUI: Bool
-    let scheduledBasalRate: HKQuantity?
+public struct DoseEntry {
+    public let type: DoseType
+    public let startDate: Date
+    public let endDate: Date
+    public let value: Double
+    public let unit: String
+    public let deliveredUnits: Double?
+    public let description: String?
+    public let insulinType: String?
+    public let automatic: Bool?
+    public let manuallyEntered: Bool
+    public let syncIdentifier: String
+    public let isMutable: Bool
+    public let wasProgrammedByPumpUI: Bool
+    public let scheduledBasalRate: HKQuantity?
 }
 
-struct DoseEntryParser: Parser {
+public struct DoseEntryParser: Parser {
 
-    var body: some Parser<Substring, DoseEntry> {
+    public var body: some Parser<Substring, DoseEntry> {
         let p = Parse {
             "DoseEntry("
             AttributeValueParser(name: "type") {

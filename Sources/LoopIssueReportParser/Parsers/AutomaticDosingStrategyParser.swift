@@ -7,7 +7,7 @@
 
 import Parsing
 
-enum AutomaticDosingStrategy {
+public enum AutomaticDosingStrategy {
     case tempBasalOnly
     case automaticBolus
 }

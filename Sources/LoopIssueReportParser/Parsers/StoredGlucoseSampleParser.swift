@@ -9,25 +9,25 @@ import Foundation
 import Parsing
 import HealthKit
 
-struct StoredGlucoseSample {
-    let uuid: String?
-    let provenanceIdentifier: String
-    let syncIdentifier: String?
-    let syncVersion: Int?
-    let device: String?
-    let healthKitEligibleDate: Date?
-    let startDate: Date
-    let quantity: HKQuantity
-    let isDisplayOnly: Bool
-    let wasUserEntered: Bool
-    let condition: String?
-    let trend: GlucoseTrend?
-    let trendRate: HKQuantity?
+public struct StoredGlucoseSample {
+    public let uuid: String?
+    public let provenanceIdentifier: String
+    public let syncIdentifier: String?
+    public let syncVersion: Int?
+    public let device: String?
+    public let healthKitEligibleDate: Date?
+    public let startDate: Date
+    public let quantity: HKQuantity
+    public let isDisplayOnly: Bool
+    public let wasUserEntered: Bool
+    public let condition: String?
+    public let trend: GlucoseTrend?
+    public let trendRate: HKQuantity?
 }
 
-struct StoredGlucoseSampleParser: Parser {
+public struct StoredGlucoseSampleParser: Parser {
 
-    var body: some Parser<Substring, StoredGlucoseSample> {
+    public var body: some Parser<Substring, StoredGlucoseSample> {
 
         let p = Parse {
             "StoredGlucoseSample("
