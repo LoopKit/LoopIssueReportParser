@@ -15,15 +15,13 @@ struct OptionalParser<Wrapped: Parser>: Parser where Wrapped.Input == Substring 
     }
 
     var body: some Parser<Substring, Wrapped.Output?> {
-        return Parse() {
-            OneOf {
-                "nil".map { Optional<Wrapped.Output>(nil) }
-                Parse {
-                    "Optional("
-                    wrapped
-                    ")"
-                }.map { Optional<Wrapped.Output>($0) }
-            }
+        OneOf {
+            "nil".map { Optional<Wrapped.Output>(nil) }
+            Parse {
+                "Optional("
+                wrapped
+                ")"
+            }.map { Optional<Wrapped.Output>($0) }
         }
     }
 }

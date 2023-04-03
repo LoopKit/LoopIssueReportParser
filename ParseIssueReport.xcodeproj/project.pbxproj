@@ -23,6 +23,13 @@
 		C181BCAC29D3B91B00F25DB3 /* IssueReportParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C181BCAB29D3B91B00F25DB3 /* IssueReportParser.swift */; };
 		C1CC897329D9D4AE00BE0692 /* DoseEntryParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC897229D9D4AE00BE0692 /* DoseEntryParser.swift */; };
 		C1CC897529D9D96900BE0692 /* DoseTypeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC897429D9D96900BE0692 /* DoseTypeParser.swift */; };
+		C1CC897729DA20A400BE0692 /* LoopSettingsParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC897629DA20A400BE0692 /* LoopSettingsParser.swift */; };
+		C1CC897929DA2A4200BE0692 /* HKUnitParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC897829DA2A4200BE0692 /* HKUnitParser.swift */; };
+		C1CC897B29DA2DDC00BE0692 /* TimeZoneParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC897A29DA2DDC00BE0692 /* TimeZoneParser.swift */; };
+		C1CC897D29DA3B6200BE0692 /* DoubleRangeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC897C29DA3B6200BE0692 /* DoubleRangeParser.swift */; };
+		C1CC897F29DA49ED00BE0692 /* RepeatingScheduleValueParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC897E29DA49ED00BE0692 /* RepeatingScheduleValueParser.swift */; };
+		C1CC898129DA4A2B00BE0692 /* DailyQuantityScheduleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC898029DA4A2B00BE0692 /* DailyQuantityScheduleParser.swift */; };
+		C1CC898329DA4AFE00BE0692 /* GlucoseRangeScheduleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1CC898229DA4AFE00BE0692 /* GlucoseRangeScheduleParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +50,13 @@
 		C181BCAB29D3B91B00F25DB3 /* IssueReportParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueReportParser.swift; sourceTree = "<group>"; };
 		C1CC897229D9D4AE00BE0692 /* DoseEntryParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseEntryParser.swift; sourceTree = "<group>"; };
 		C1CC897429D9D96900BE0692 /* DoseTypeParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseTypeParser.swift; sourceTree = "<group>"; };
+		C1CC897629DA20A400BE0692 /* LoopSettingsParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopSettingsParser.swift; sourceTree = "<group>"; };
+		C1CC897829DA2A4200BE0692 /* HKUnitParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HKUnitParser.swift; sourceTree = "<group>"; };
+		C1CC897A29DA2DDC00BE0692 /* TimeZoneParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeZoneParser.swift; sourceTree = "<group>"; };
+		C1CC897C29DA3B6200BE0692 /* DoubleRangeParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleRangeParser.swift; sourceTree = "<group>"; };
+		C1CC897E29DA49ED00BE0692 /* RepeatingScheduleValueParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatingScheduleValueParser.swift; sourceTree = "<group>"; };
+		C1CC898029DA4A2B00BE0692 /* DailyQuantityScheduleParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyQuantityScheduleParser.swift; sourceTree = "<group>"; };
+		C1CC898229DA4AFE00BE0692 /* GlucoseRangeScheduleParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseRangeScheduleParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,14 +83,21 @@
 			isa = PBXGroup;
 			children = (
 				C169A7E329D8DAE100194F24 /* AttributeParser.swift */,
+				C1CC898029DA4A2B00BE0692 /* DailyQuantityScheduleParser.swift */,
 				C169A7E129D8DAB900194F24 /* DebugDateParser.swift */,
 				C1CC897229D9D4AE00BE0692 /* DoseEntryParser.swift */,
 				C1CC897429D9D96900BE0692 /* DoseTypeParser.swift */,
+				C1CC897C29DA3B6200BE0692 /* DoubleRangeParser.swift */,
+				C1CC898229DA4AFE00BE0692 /* GlucoseRangeScheduleParser.swift */,
 				C169A7E529D8DB2800194F24 /* GlucoseTrend.swift */,
+				C1CC897829DA2A4200BE0692 /* HKUnitParser.swift */,
 				C181BCAB29D3B91B00F25DB3 /* IssueReportParser.swift */,
+				C1CC897629DA20A400BE0692 /* LoopSettingsParser.swift */,
 				C17204C829D7313F00EA788D /* OptionalParser.swift */,
 				C169A7DF29D8DA9500194F24 /* QuantityParser.swift */,
+				C1CC897E29DA49ED00BE0692 /* RepeatingScheduleValueParser.swift */,
 				C175D4FE29D8DC11006A049C /* StoredGlucoseSampleParser.swift */,
+				C1CC897A29DA2DDC00BE0692 /* TimeZoneParser.swift */,
 			);
 			path = Parsers;
 			sourceTree = "<group>";
@@ -206,12 +227,19 @@
 			files = (
 				C169A7E629D8DB2800194F24 /* GlucoseTrend.swift in Sources */,
 				C175D4FF29D8DC11006A049C /* StoredGlucoseSampleParser.swift in Sources */,
+				C1CC897929DA2A4200BE0692 /* HKUnitParser.swift in Sources */,
 				C181BCAC29D3B91B00F25DB3 /* IssueReportParser.swift in Sources */,
+				C1CC898329DA4AFE00BE0692 /* GlucoseRangeScheduleParser.swift in Sources */,
 				C169A7E429D8DAE100194F24 /* AttributeParser.swift in Sources */,
 				C169A7E029D8DA9500194F24 /* QuantityParser.swift in Sources */,
 				C181BC9E29D3B72400F25DB3 /* ContentView.swift in Sources */,
+				C1CC897B29DA2DDC00BE0692 /* TimeZoneParser.swift in Sources */,
+				C1CC897729DA20A400BE0692 /* LoopSettingsParser.swift in Sources */,
+				C1CC898129DA4A2B00BE0692 /* DailyQuantityScheduleParser.swift in Sources */,
 				C1CC897329D9D4AE00BE0692 /* DoseEntryParser.swift in Sources */,
 				C169A7E229D8DAB900194F24 /* DebugDateParser.swift in Sources */,
+				C1CC897F29DA49ED00BE0692 /* RepeatingScheduleValueParser.swift in Sources */,
+				C1CC897D29DA3B6200BE0692 /* DoubleRangeParser.swift in Sources */,
 				C181BC9C29D3B72400F25DB3 /* ParseIssueReportApp.swift in Sources */,
 				C17204C929D7313F00EA788D /* OptionalParser.swift in Sources */,
 				C169A7DD29D8C5F600194F24 /* HKUnit.swift in Sources */,

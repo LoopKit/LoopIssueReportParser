@@ -13,11 +13,7 @@ struct QuantityParser: Parser {
         Parse() {
             Double.parser()
             " "
-            OneOf {
-                "mg/dL".map { HKUnit.milligramsPerDeciliter }
-                "mg/min·dL".map { HKUnit.milligramsPerDeciliter.unitDivided(by: .minute()) }
-                "IU/hr".map { HKUnit.internationalUnitsPerHour }
-            }
+            HKUnitParser()
         }.map { (value, units) in
             HKQuantity(unit: units, doubleValue: value)
         }

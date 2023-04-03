@@ -17,6 +17,8 @@ struct IssueReportParser: Parser {
 
     var body: some Parser<Substring, IssueReport> {
         let p = Parse {
+            "## LoopDataManager"
+            Whitespace(.vertical)
             "#### cachedDoseEntries"
             Whitespace(.vertical)
             Many {

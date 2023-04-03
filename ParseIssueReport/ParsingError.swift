@@ -10,6 +10,7 @@ import Foundation
 enum ParsingError: Error {
     case inputEndedTooEarly(Int)
     case invalidDate(String, String)
+    case invalidTimeZoneOffset(Int)
 }
 
 extension ParsingError: CustomDebugStringConvertible {
@@ -19,6 +20,8 @@ extension ParsingError: CustomDebugStringConvertible {
             return "Invalid format: \"\(failed)\". Expected format \(format)"
         case .inputEndedTooEarly(let count):
             return "Not enough characters. Needed \(count) characters."
+        case .invalidTimeZoneOffset(let offset):
+            return "Invalid TimeZone offset: \(offset)"
         }
     }
 }

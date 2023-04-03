@@ -17,10 +17,8 @@ struct AttributeParser<ValueParser: Parser>: Parser where ValueParser.Input == S
         self.valueParser = build()
     }
     var body: some Parser<Substring, ValueParser.Output> {
-        Parse() {
-            name
-            ": "
-            valueParser
-        }
+        name
+        ": "
+        valueParser
     }
 }
