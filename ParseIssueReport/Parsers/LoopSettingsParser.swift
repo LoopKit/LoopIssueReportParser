@@ -27,6 +27,11 @@ struct LoopSettings {
     let legacyWorkoutTargetRange: ClosedRange<HKQuantity>?
     let overridePresets: [TemporaryScheduleOverridePreset]
     let scheduleOverride: TemporaryScheduleOverride?
+    let preMealOverride: TemporaryScheduleOverride?
+    let maximumBasalRatePerHour: Double?
+    let maximumBolus: Double?
+    let suspendThreshold: GlucoseThreshold?
+    let automaticDosingStrategy: AutomaticDosingStrategy
 }
 
 struct LoopSettingsParser: Parser {
@@ -110,19 +115,52 @@ struct LoopSettingsParser: Parser {
                     TemporaryScheduleOverrideParser()
                 }
             }
+            ", "
+            AttributeParser(name: "preMealOverride") {
+                OptionalParser {
+                    TemporaryScheduleOverrideParser()
+                }
+            }
+            ", "
+            AttributeParser(name: "maximumBasalRatePerHour") {
+                OptionalParser {
+                    Double.parser()
+                }
+            }
+            ", "
+            AttributeParser(name: "maximumBolus") {
+                OptionalParser {
+                    Double.parser()
+                }
+            }
+            ", "
+            AttributeParser(name: "suspendThreshold") {
+                OptionalParser {
+                    GlucoseThresholdParser()
+                }
+            }
+            ", "
+            AttributeParser(name: "automaticDosingStrategy") {
+                AutomaticDosingStrategyParser()
+            }
         }
 
         return p.map { (value) -> LoopSettings in
             LoopSettings(
-                dosingEnabled: value.0,
-                glucoseTargetRangeSchedule: value.1,
-                insulinSensitivitySchedule: value.2,
-                basalRateSchedule: value.3,
-                carbRatioSchedule: value.4,
-                preMealTargetRange: value.5,
-                legacyWorkoutTargetRange: value.6,
-                overridePresets: value.7,
-                scheduleOverride: value.8
+                dosingEnabled: value.0.0,
+                glucoseTargetRangeSchedule: value.0.1,
+                insulinSensitivitySchedule: value.0.2,
+                basalRateSchedule: value.0.3,
+                carbRatioSchedule: value.0.4,
+                preMealTargetRange: value.0.5,
+                legacyWorkoutTargetRange: value.0.6,
+                overridePresets: value.0.7,
+                scheduleOverride: value.0.8,
+                preMealOverride: value.0.9,
+                maximumBasalRatePerHour: value.1,
+                maximumBolus: value.2,
+                suspendThreshold: value.3,
+                automaticDosingStrategy: value.4
             )
         }
     }
