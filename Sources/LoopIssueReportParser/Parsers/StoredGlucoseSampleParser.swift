@@ -10,7 +10,7 @@ import Parsing
 import HealthKit
 
 public struct StoredGlucoseSample {
-    public let uuid: String?
+    public let uuid: UUID?
     public let provenanceIdentifier: String
     public let syncIdentifier: String?
     public let syncVersion: Int?
@@ -20,7 +20,7 @@ public struct StoredGlucoseSample {
     public let quantity: HKQuantity
     public let isDisplayOnly: Bool
     public let wasUserEntered: Bool
-    public let condition: String?
+    public let condition: GlucoseCondition?
     public let trend: GlucoseTrend?
     public let trendRate: HKQuantity?
 }
@@ -33,9 +33,7 @@ public struct StoredGlucoseSampleParser: Parser {
             "StoredGlucoseSample("
             AttributeValueParser(name: "uuid") {
                 OptionalParser {
-                    Prefix() {
-                        $0 != ")"
-                    }
+                    UUID.parser()
                 }
             }
             ", "
@@ -89,7 +87,7 @@ public struct StoredGlucoseSampleParser: Parser {
             ", "
             AttributeValueParser(name: "condition") {
                 OptionalParser {
-                    Prefix { $0 != "," }
+                    GlucoseConditionParser()
                 }
             }
             ", "
@@ -109,7 +107,7 @@ public struct StoredGlucoseSampleParser: Parser {
 
         return p.map { result in
             return StoredGlucoseSample(
-                uuid: result.0.0.map(String.init),
+                uuid: result.0.0,
                 provenanceIdentifier: String(result.0.1),
                 syncIdentifier: result.0.2.map(String.init),
                 syncVersion: result.0.3,
@@ -119,7 +117,7 @@ public struct StoredGlucoseSampleParser: Parser {
                 quantity: result.0.7,
                 isDisplayOnly: result.0.8,
                 wasUserEntered: result.0.9,
-                condition: result.1.map(String.init),
+                condition: result.1,
                 trend: result.2,
                 trendRate: result.3)
         }

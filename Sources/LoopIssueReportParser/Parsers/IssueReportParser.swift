@@ -9,6 +9,7 @@ import HealthKit
 import Parsing
 
 public struct IssueReport {
+    public let generatedAt: Date
     public let buildDetails: BuildDetails
     public let deviceLogs: [DeviceCommunicationLogEntry]
     public let loopSettings: LoopSettings
@@ -19,17 +20,28 @@ public struct IssueReport {
 
 public struct IssueReportParser: Parser {
 
+    let skipDeviceLog: Bool
+
+    public init(skipDeviceLog: Bool = true) {
+        self.skipDeviceLog = skipDeviceLog
+    }
+
     public var body: some Parser<Substring, IssueReport> {
         let p = Parse {
+            Skip { PrefixUpTo("Generated: ") }
+            "Generated: "
+            DebugDateParser()
             Skip { PrefixUpTo("## Build Details") }
             BuildDetailsParser()
-            Skip { PrefixUpTo("## Device Communication Log") }
-            "## Device Communication Log"
-            Whitespace(.vertical)
-            Many {
-                DeviceCommunicationLogEntryParser()
-            } separator: {
+            if !skipDeviceLog {
+                Skip { PrefixUpTo("## Device Communication Log") }
+                "## Device Communication Log"
                 Whitespace(.vertical)
+                Many {
+                    DeviceCommunicationLogEntryParser()
+                } separator: {
+                    Whitespace(.vertical)
+                }
             }
             Skip { PrefixUpTo("## LoopDataManager") }
             "## LoopDataManager"
@@ -71,12 +83,13 @@ public struct IssueReportParser: Parser {
         }
         return p.map { value in
             IssueReport(
-                buildDetails: value.0,
-                deviceLogs: value.1,
-                loopSettings: value.2,
-                cachedGlucoseSamples: value.3,
-                cachedCarbEntries: value.4,
-                cachedDoseEntries: value.5
+                generatedAt: value.0,
+                buildDetails: value.1,
+                deviceLogs: value.2 ?? [],
+                loopSettings: value.3,
+                cachedGlucoseSamples: value.4,
+                cachedCarbEntries: value.5,
+                cachedDoseEntries: value.6
             )
         }
     }

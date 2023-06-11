@@ -8,8 +8,9 @@ final class LoopIssueReportParserTests: XCTestCase {
 
         let data = try Data(contentsOf: exampleFileURL!)
         let text = String(data: data, encoding: .utf8)!
-        let issueReport = try IssueReportParser().parse(text)
+        let issueReport = try IssueReportParser(skipDeviceLog: false).parse(text)
 
+        XCTAssertEqual(issueReport.generatedAt.description, "2023-03-22 18:12:54 +0000")
         XCTAssertEqual(issueReport.buildDetails.appNameAndVersion, "Loop v3.2.0 (3)")
         XCTAssertEqual(issueReport.cachedCarbEntries.count, 2)
         XCTAssertEqual(issueReport.cachedDoseEntries.count, 151)
