@@ -7,9 +7,7 @@ let package = Package(
     name: "LoopIssueReportParser",
     platforms: [
         .iOS(.v15),
-        .macOS(.v15),
-        .tvOS(.v15),
-        .watchOS(.v9),
+        .macOS(.v13),
       ],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
