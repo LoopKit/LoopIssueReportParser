@@ -10,7 +10,7 @@ import Parsing
 import HealthKit
 import LoopKit
 
-struct DailyQuantityScheduleParser<TParser: Parser>: Parser where TParser.Input == Substring {
+struct DailyQuantityScheduleParser<TParser: Parser>: Parser where TParser.Input == Substring, TParser.Output: RawRepresentable {
 
     // Attributes can be in any order, which makes this parser a little more complicated
     // ["unit": "mg/dL", "timeZone": -25200, "items": [["startTime": 0.0, "value": [90.0, 90.0]]]]
@@ -85,10 +85,7 @@ struct DailyQuantityScheduleParser<TParser: Parser>: Parser where TParser.Input 
             throw ParsingError.missingAttribute("timeZone")
         }
 
-        let valueSchedule = DailyValueSchedule(
-            dailyItems: items,
-            timeZone: timeZone)!
-        return DailyQuantitySchedule(unit: unit, valueSchedule: valueSchedule)
+        return DailyQuantitySchedule(unit: unit, dailyItems: items, timeZone: timeZone)!
     }
 
 }
