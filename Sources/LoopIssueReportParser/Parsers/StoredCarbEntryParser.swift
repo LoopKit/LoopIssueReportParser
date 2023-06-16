@@ -8,20 +8,7 @@
 import Foundation
 import Parsing
 import HealthKit
-
-public struct StoredCarbEntry {
-    public let uuid: UUID?
-    public let provenanceIdentifier: String
-    public let syncIdentifier: String?
-    public let syncVersion: Int?
-    public let startDate: Date
-    public let quantity: HKQuantity
-    public let foodType: String?
-    public let absorptionTime: TimeInterval?
-    public let createdByCurrentApp: Bool
-    public let userCreatedDate: Date?
-    public let userUpdatedDate: Date?
-}
+import LoopKit
 
 public struct StoredCarbEntryParser: Parser {
 
