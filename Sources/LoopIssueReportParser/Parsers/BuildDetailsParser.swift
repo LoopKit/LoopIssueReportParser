@@ -17,6 +17,18 @@ public struct BuildDetails {
     public let sourceRoot: String
     public let buildDateString: String
     public let xcodeVersion: String
+
+    public init(appNameAndVersion: String, profileExpiration: String, gitRevision: String, gitBranch: String, workspaceGitRevision: String, workspaceGitBranch: String, sourceRoot: String, buildDateString: String, xcodeVersion: String) {
+        self.appNameAndVersion = appNameAndVersion
+        self.profileExpiration = profileExpiration
+        self.gitRevision = gitRevision
+        self.gitBranch = gitBranch
+        self.workspaceGitRevision = workspaceGitRevision
+        self.workspaceGitBranch = workspaceGitBranch
+        self.sourceRoot = sourceRoot
+        self.buildDateString = buildDateString
+        self.xcodeVersion = xcodeVersion
+    }
 }
 
 public struct BuildDetailsParser: Parser {
