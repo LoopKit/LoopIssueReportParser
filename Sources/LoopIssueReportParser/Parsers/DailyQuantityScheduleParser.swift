@@ -8,18 +8,7 @@
 import Foundation
 import Parsing
 import HealthKit
-
-
-public struct DailyQuantitySchedule<T> {
-    public let unit: HKUnit
-    public let valueSchedule: DailyValueSchedule<T>
-}
-
-public typealias SingleQuantitySchedule = DailyQuantitySchedule<Double>
-public typealias InsulinSensitivitySchedule = SingleQuantitySchedule
-public typealias BasalRateSchedule = DailyValueSchedule<Double>
-public typealias CarbRatioSchedule = SingleQuantitySchedule
-
+import LoopKit
 
 struct DailyQuantityScheduleParser<TParser: Parser>: Parser where TParser.Input == Substring {
 
@@ -97,10 +86,8 @@ struct DailyQuantityScheduleParser<TParser: Parser>: Parser where TParser.Input 
         }
 
         let valueSchedule = DailyValueSchedule(
-            referenceTimeInterval: 0,
-            repeatInterval: 86400,
-            items: items,
-            timeZone: timeZone)
+            dailyItems: items,
+            timeZone: timeZone)!
         return DailyQuantitySchedule(unit: unit, valueSchedule: valueSchedule)
     }
 

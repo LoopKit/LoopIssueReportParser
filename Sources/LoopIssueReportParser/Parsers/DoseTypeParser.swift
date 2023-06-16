@@ -6,15 +6,7 @@
 //
 
 import Parsing
-
-public enum DoseType: String {
-    case basal
-    case bolus
-    case resume
-    case suspend
-    case tempBasal
-}
-
+import LoopKit
 
 struct DoseTypeParser: Parser {
     var body: some Parser<Substring, DoseType> {

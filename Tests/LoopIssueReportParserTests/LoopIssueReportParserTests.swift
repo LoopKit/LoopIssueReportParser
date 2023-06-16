@@ -29,4 +29,17 @@ final class LoopIssueReportParserTests: XCTestCase {
         XCTAssertEqual(issueReport.loopSettings.automaticDosingStrategy, .tempBasalOnly)
         XCTAssertEqual(issueReport.loopSettings.overridePresets.count, 0)
     }
+
+    func testParsingDoseEntry() {
+
+        let text = "DoseEntry(type: LoopKit.DoseType.tempBasal, startDate: 2023-03-21 21:44:49 +0000, endDate: 2023-03-21 21:45:28 +0000, value: 2.0, unit: LoopKit.DoseUnit.unitsPerHour, deliveredUnits: Optional(0.021129271687519168), description: nil, insulinType: Optional(LoopKit.InsulinType.novolog), automatic: Optional(true), manuallyEntered: false, syncIdentifier: Optional(\"b2e6f40441414422b7c8cd1672e0c20e\"), isMutable: false, wasProgrammedByPumpUI: false, scheduledBasalRate: Optional(0.475 IU/hr))"
+
+        do {
+            let issueReport = try DoseEntryParser().parse(text)
+        } catch {
+            print(error)
+            XCTFail(error.localizedDescription)
+        }
+
+    }
 }

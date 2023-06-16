@@ -7,6 +7,7 @@
 
 import Foundation
 import Parsing
+import LoopKit
 
 public enum End {
     case natural

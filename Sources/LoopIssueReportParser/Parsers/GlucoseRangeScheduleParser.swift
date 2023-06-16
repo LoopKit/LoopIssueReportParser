@@ -7,23 +7,7 @@
 
 import Foundation
 import Parsing
-
-public struct DoubleRange {
-    public let minValue: Double
-    public let maxValue: Double
-}
-
-public struct GlucoseRangeSchedule {
-
-    // LoopKit.GlucoseRangeSchedule(override: nil, rangeSchedule: ["unit": "mg/dL", "timeZone": -25200, "items": [["startTime": 0.0, "value": [90.0, 90.0]]]])
-
-    struct Override {
-
-    }
-
-    let override: Override?
-    public let rangeSchedule: DailyQuantitySchedule<DoubleRange>
-}
+import LoopKit
 
 struct GlucoseRangeScheduleParser: Parser {
     var body: some Parser<Substring, GlucoseRangeSchedule> {
@@ -52,7 +36,7 @@ struct GlucoseRangeScheduleParser: Parser {
         }
 
         return p.map { (value) -> GlucoseRangeSchedule in
-            return GlucoseRangeSchedule(override: nil, rangeSchedule: value.1)
+            return GlucoseRangeSchedule(rangeSchedule: value.1, override: nil)
         }
     }
 }

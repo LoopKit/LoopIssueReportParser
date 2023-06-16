@@ -6,6 +6,7 @@
 //
 
 import Parsing
+import LoopKit
 
 struct DoubleRangeParser: Parser {
     // [90.0, 90.0]
