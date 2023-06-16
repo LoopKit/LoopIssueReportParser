@@ -8,6 +8,7 @@
 import Foundation
 import Parsing
 import HealthKit
+import LoopKit
 
 public struct StoredGlucoseSample {
     public let uuid: UUID?

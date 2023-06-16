@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "loopkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LoopKit/LoopKit",
+      "state" : {
+        "branch" : "dev",
+        "revision" : "db316ef7c46f81379742d6cc1a254be4017d1d54"
+      }
+    },
+    {
       "identity" : "swift-case-paths",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-case-paths",
@@ -16,6 +25,15 @@
       "state" : {
         "branch" : "main",
         "revision" : "01ded1787ba38eed370b964499e40bf44e8c12e5"
+      }
+    },
+    {
+      "identity" : "swiftcharts",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/ivanschuetz/SwiftCharts",
+      "state" : {
+        "branch" : "master",
+        "revision" : "c354c1945bb35a1f01b665b22474f6db28cba4a2"
       }
     },
     {

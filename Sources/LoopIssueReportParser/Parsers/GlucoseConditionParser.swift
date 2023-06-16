@@ -6,20 +6,14 @@
 //
 
 import Parsing
-
-
-public enum GlucoseCondition: String, CaseIterable {
-    case belowRange
-    case aboveRange
-}
+import LoopKit
 
 struct GlucoseConditionParser: Parser {
     var body: some Parser<Substring, GlucoseCondition> {
-        "LoopKit.GlucoseTrend."
+        "LoopKit.GlucoseCondition."
         OneOf {
-            for condition in GlucoseCondition.allCases {
-                condition.rawValue.map { condition }
-            }
+            "belowRange".map { GlucoseCondition.belowRange }
+            "aboveRange".map { GlucoseCondition.aboveRange }
         }
     }
 }

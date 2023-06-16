@@ -7,17 +7,7 @@
 
 import Foundation
 import Parsing
-
-public enum GlucoseTrend: Int, CaseIterable {
-    case upUpUp       = 1
-    case upUp         = 2
-    case up           = 3
-    case flat         = 4
-    case down         = 5
-    case downDown     = 6
-    case downDownDown = 7
-}
-
+import LoopKit
 
 struct GlucoseTrendParser: Parser {
     var body: some Parser<Substring, GlucoseTrend> {

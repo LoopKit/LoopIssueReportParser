@@ -7,6 +7,7 @@
 
 import HealthKit
 import Parsing
+import LoopKit
 
 public struct IssueReport {
     public let generatedAt: Date

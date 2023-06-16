@@ -8,12 +8,20 @@
 import Foundation
 import Parsing
 
-public struct DeviceCommunicationLogEntry {
+public struct DeviceCommunicationLogEntry: Equatable, Hashable {
     public let date: Date
     public let device: String
     public let deviceId: String
     public let entryType: String
     public let message: String
+
+    public init(date: Date, device: String, deviceId: String, entryType: String, message: String) {
+        self.date = date
+        self.device = device
+        self.deviceId = deviceId
+        self.entryType = entryType
+        self.message = message
+    }
 }
 
 public struct DeviceCommunicationLogEntryParser: Parser {

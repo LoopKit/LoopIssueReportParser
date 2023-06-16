@@ -6,11 +6,7 @@
 //
 
 import Parsing
-
-public enum AutomaticDosingStrategy {
-    case tempBasalOnly
-    case automaticBolus
-}
+import LoopKit
 
 struct AutomaticDosingStrategyParser: Parser {
     var body: some Parser<Substring, AutomaticDosingStrategy> {

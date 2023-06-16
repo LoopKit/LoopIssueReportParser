@@ -7,13 +7,7 @@
 
 import Foundation
 import Parsing
-
-public struct DailyValueSchedule<T> {
-    public let referenceTimeInterval: TimeInterval
-    public let repeatInterval: TimeInterval
-    public let items: [RepeatingScheduleValue<T>]
-    public var timeZone: TimeZone
-}
+import LoopKit
 
 public struct DailyValueScheduleParser<TParser: Parser>: Parser where TParser.Input == Substring {
 
@@ -77,11 +71,12 @@ public struct DailyValueScheduleParser<TParser: Parser>: Parser where TParser.In
         guard items.count > 0 else {
             throw ParsingError.missingAttribute("items")
         }
+        return DailyValueSchedule(dailyItems: items, timeZone: timeZone)!
 
-        return DailyValueSchedule(
-            referenceTimeInterval: 0,
-            repeatInterval: 86400,
-            items: items,
-            timeZone: timeZone)
+//        return DailyValueSchedule(
+//            referenceTimeInterval: 0,
+//            repeatInterval: 86400,
+//            items: items,
+//            timeZone: timeZone)
     }
 }

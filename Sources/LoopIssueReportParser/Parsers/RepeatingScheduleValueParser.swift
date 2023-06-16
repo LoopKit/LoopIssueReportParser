@@ -7,11 +7,7 @@
 
 import Parsing
 import Foundation
-
-public struct RepeatingScheduleValue<T> {
-    public var startTime: TimeInterval
-    public var value: T
-}
+import LoopKit
 
 public struct RepeatingScheduleValueParser<TParser: Parser>: Parser where TParser.Input == Substring {
     // Attributes can be in any order
