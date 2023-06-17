@@ -12,11 +12,9 @@ struct DoseTypeParser: Parser {
     var body: some Parser<Substring, DoseType> {
         "LoopKit.DoseType."
         OneOf {
-            "basal".map { DoseType.basal }
-            "bolus".map { DoseType.bolus }
-            "resume".map { DoseType.resume }
-            "suspend".map { DoseType.suspend }
-            "tempBasal".map { DoseType.tempBasal }
+            for type in DoseType.allCases {
+                type.rawValue.map { type }
+            }
         }
     }
 }

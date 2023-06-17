@@ -16,6 +16,9 @@ public struct IssueReport {
     public let loopSettings: LoopSettings
     public let cachedGlucoseSamples: [StoredGlucoseSample]
     public let cachedCarbEntries: [StoredCarbEntry]
+    public let pumpEvents: [PersistedPumpEvent]
+    public let normalizedDoseEntries: [DoseEntry]
+    public let entriesForSavingToInsulinDeliveryStore: [DoseEntry]
     public let cachedDoseEntries: [DoseEntry]
 }
 
@@ -72,6 +75,34 @@ public struct IssueReportParser: Parser {
             } separator: {
                 Whitespace(.vertical)
             }
+            Skip { PrefixUpTo("### getPumpEventValues") }
+            "### getPumpEventValues"
+            Whitespace(.vertical)
+            Whitespace(.vertical)
+            Many {
+                "* "
+                PersistedPumpEventParser()
+            } separator: {
+                Whitespace(.vertical)
+            }
+            Skip { PrefixUpTo("### getNormalizedDoseEntries") }
+            "### getNormalizedDoseEntries"
+            Whitespace(.vertical)
+            Whitespace(.vertical)
+            Many {
+                "* "
+                DoseEntryParser()
+            } separator: {
+                Whitespace(.vertical)
+            }
+            Skip { PrefixUpTo("### getPumpEventDoseEntriesForSavingToInsulinDeliveryStore") }
+            "### getPumpEventDoseEntriesForSavingToInsulinDeliveryStore"
+            Whitespace(.vertical)
+            Many {
+                DoseEntryParser()
+            } separator: {
+                Whitespace(.vertical)
+            }
             Skip { PrefixUpTo("#### cachedDoseEntries") }
             "#### cachedDoseEntries"
             Whitespace(.vertical)
@@ -90,7 +121,10 @@ public struct IssueReportParser: Parser {
                 loopSettings: value.3,
                 cachedGlucoseSamples: value.4,
                 cachedCarbEntries: value.5,
-                cachedDoseEntries: value.6
+                pumpEvents: value.6,
+                normalizedDoseEntries: value.7,
+                entriesForSavingToInsulinDeliveryStore: value.8,
+                cachedDoseEntries: value.9
             )
         }
     }

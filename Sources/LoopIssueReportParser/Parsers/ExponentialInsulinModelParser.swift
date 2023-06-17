@@ -7,13 +7,7 @@
 
 import Foundation
 import Parsing
-
-public struct ExponentialInsulinModel {
-    let actionDuration: TimeInterval
-    let peakActivityTime: TimeInterval
-    let delay: TimeInterval
-}
-
+import LoopKit
 
 struct ExponentialInsulinModelParser: Parser {
     // ExponentialInsulinModel(actionDuration: 21600.0, peakActivityTime: 4500.0, delay: 600.0)

@@ -12,12 +12,9 @@ struct InsulinTypeParser: Parser {
     var body: some Parser<Substring, InsulinType> {
         "LoopKit.InsulinType."
         OneOf {
-            "novolog".map { InsulinType.novolog }
-            "humalog".map { InsulinType.humalog }
-            "apidra".map { InsulinType.apidra }
-            "fiasp".map { InsulinType.fiasp }
-            "lyumjev".map { InsulinType.lyumjev }
-            "afrezza".map { InsulinType.afrezza }
+            for type in InsulinType.allCases {
+                String(describing: type).map { type }
+            }
         }
     }
 }

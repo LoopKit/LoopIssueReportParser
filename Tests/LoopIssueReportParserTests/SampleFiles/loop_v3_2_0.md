@@ -1466,6 +1466,8 @@ cachedCarbEntries:
 
 ### getPumpEventValues
 
+* PersistedPumpEvent(date: 2023-06-15 14:26:41 +0000, persistedDate: 2023-06-15 14:27:04 +0000, dose: Optional(LoopKit.DoseEntry(type: LoopKit.DoseType.tempBasal, startDate: 2023-06-15 14:26:41 +0000, endDate: 2023-06-15 14:27:04 +0000, value: 0.0, unit: LoopKit.DoseUnit.unitsPerHour, deliveredUnits: Optional(0.0), description: nil, insulinType: Optional(LoopKit.InsulinType.novolog), automatic: Optional(true), manuallyEntered: false, syncIdentifier: Optional("a7e2601949dc4e4599ff07eeea3aa473"), isMutable: true, wasProgrammedByPumpUI: false, scheduledBasalRate: nil)), isUploaded: false, objectIDURL: x-coredata://D8510943-8CBA-4D7B-8398-AE7BCA863599/PumpEvent/p520493, raw: Optional(16 bytes), title: Optional("Temp Basal"), type: Optional(LoopKit.PumpEventType.tempBasal), automatic: Optional(true), alarmType: nil)
+* PersistedPumpEvent(date: 2023-06-15 14:20:15 +0000, persistedDate: 2023-06-15 14:26:41 +0000, dose: Optional(LoopKit.DoseEntry(type: LoopKit.DoseType.tempBasal, startDate: 2023-06-15 14:20:15 +0000, endDate: 2023-06-15 14:26:41 +0000, value: 1.0, unit: LoopKit.DoseUnit.unitsPerHour, deliveredUnits: Optional(0.1), description: nil, insulinType: Optional(LoopKit.InsulinType.novolog), automatic: Optional(true), manuallyEntered: false, syncIdentifier: Optional("57a2d5b253b843e3809573ae96f6fe8f"), isMutable: false, wasProgrammedByPumpUI: false, scheduledBasalRate: nil)), isUploaded: false, objectIDURL: x-coredata://D8510943-8CBA-4D7B-8398-AE7BCA863599/PumpEvent/p520447, raw: Optional(16 bytes), title: Optional("Temp Basal"), type: Optional(LoopKit.PumpEventType.tempBasal), automatic: Optional(true), alarmType: nil)
 
 ### getNormalizedDoseEntries
 
@@ -1622,6 +1624,7 @@ cachedCarbEntries:
 * DoseEntry(type: LoopKit.DoseType.basal, startDate: 2023-03-22 16:28:45 +0000, endDate: 2023-03-22 17:00:00 +0000, value: 0.2604166666666667, unit: LoopKit.DoseUnit.units, deliveredUnits: nil, description: nil, insulinType: Optional(LoopKit.InsulinType.novolog), automatic: nil, manuallyEntered: false, syncIdentifier: Optional("7b0626dc115617201400"), isMutable: false, wasProgrammedByPumpUI: false, scheduledBasalRate: nil)
 
 ### getPumpEventDoseEntriesForSavingToInsulinDeliveryStore
+DoseEntry(type: LoopKit.DoseType.tempBasal, startDate: 2023-03-21 18:03:41 +0000, endDate: 2023-03-21 18:23:59 +0000, value: 0.0, unit: LoopKit.DoseUnit.unitsPerHour, deliveredUnits: Optional(0.0), description: nil, insulinType: Optional(LoopKit.InsulinType.novolog), automatic: Optional(true), manuallyEntered: false, syncIdentifier: Optional("030000003929c3331517"), isMutable: false, wasProgrammedByPumpUI: false, scheduledBasalRate: Optional(0.475 IU/hr))
 
 
 ### getManuallyEnteredDoses
