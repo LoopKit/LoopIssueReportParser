@@ -13,7 +13,6 @@ public func <(lhs: HKQuantity, rhs: HKQuantity) -> Bool {
     return lhs.compare(rhs) == .orderedAscending
 }
 
-
 public struct LoopSettings {
     public let dosingEnabled: Bool
     public let glucoseTargetRangeSchedule: GlucoseRangeSchedule?

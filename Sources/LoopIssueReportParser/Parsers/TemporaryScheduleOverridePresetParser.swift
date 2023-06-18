@@ -9,16 +9,10 @@ import Foundation
 import Parsing
 import LoopKit
 
-public enum End {
-    case natural
-    case early(Date)
-    case deleted // Ended before started
-}
-
 struct EndParser: Parser {
     // LoopKit.End.early(2023-01-22 19:12:28 +0000)
 
-    var body: some Parser<Substring, End> {
+    var body: some Parser<Substring, LoopKit.End> {
         "LoopKit.End."
         OneOf {
             "natural".map { End.natural }
@@ -31,34 +25,6 @@ struct EndParser: Parser {
             .map { End.early($0) }
         }
     }
-}
-
-public struct TemporaryScheduleOverride {
-    public enum Context {
-        case preMeal
-        case legacyWorkout
-        case preset(TemporaryScheduleOverridePreset)
-        case custom
-    }
-
-    public enum EnactTrigger {
-        case local
-        case remote(String)
-    }
-
-    public enum Duration {
-        case finite(TimeInterval)
-        case indefinite
-    }
-
-    public let context: Context
-    public let settings: TemporaryScheduleOverrideSettings
-    public let startDate: Date
-    public let enactTrigger: EnactTrigger
-    public let syncIdentifier: UUID
-    public let actualEnd: End
-    public let duration: Duration
-
 }
 
 public struct TemporaryScheduleOverrideContextParser: Parser {
@@ -137,10 +103,10 @@ public struct TemporaryScheduleOverrideParser: Parser {
                 context: value.0,
                 settings: value.1,
                 startDate: value.2,
+                duration: value.6,
                 enactTrigger: value.3,
                 syncIdentifier: value.4,
-                actualEnd: value.5,
-                duration: value.6
+                actualEnd: value.5
             )
         }
     }
@@ -164,11 +130,6 @@ public struct TemporaryScheduleOverrideDurationParser: Parser {
 }
 
 
-public struct TemporaryScheduleOverrideSettings {
-    var targetRangeInMgdl: DoubleRange?
-    var insulinNeedsScaleFactor: Double?
-}
-
 public struct TemporaryScheduleOverrideSettingsParser: Parser {
     // LoopKit.TemporaryScheduleOverrideSettings(targetRangeInMgdl: Optional(LoopKit.DoubleRange(minValue: 150.0, maxValue: 160.0)), insulinNeedsScaleFactor: Optional(0.7))
     public var body: some Parser<Substring, TemporaryScheduleOverrideSettings> {
@@ -189,21 +150,9 @@ public struct TemporaryScheduleOverrideSettingsParser: Parser {
         }
 
         return p.map { range, scale in
-            return TemporaryScheduleOverrideSettings(
-                targetRangeInMgdl: range,
-                insulinNeedsScaleFactor: scale
-            )
+            return TemporaryScheduleOverrideSettings(unit: .milligramsPerDeciliter, targetRange: range, insulinNeedsScaleFactor: scale)
         }
     }
-}
-
-
-public struct TemporaryScheduleOverridePreset {
-    public let id: UUID
-    public var symbol: String
-    public var name: String
-    public var settings: TemporaryScheduleOverrideSettings
-    public var duration: TemporaryScheduleOverride.Duration
 }
 
 public struct TemporaryScheduleOverridePresetParser: Parser {
