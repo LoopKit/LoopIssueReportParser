@@ -42,12 +42,12 @@ public struct StoredCarbEntryParser: Parser {
             OptionalParser(alwaysSucced: true) { DebugDateParser() }
         }.map {
             StoredCarbEntry(
+                startDate: $0.4,
+                quantity: $0.5,
                 uuid: $0.0,
                 provenanceIdentifier: $0.1,
                 syncIdentifier: $0.2,
                 syncVersion: $0.3,
-                startDate: $0.4,
-                quantity: $0.5,
                 foodType: $0.6,
                 absorptionTime: $0.7,
                 createdByCurrentApp: $0.8,
