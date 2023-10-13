@@ -26,7 +26,7 @@ public struct LoopSettings {
     public let preMealOverride: TemporaryScheduleOverride?
     public let maximumBasalRatePerHour: Double?
     public let maximumBolus: Double?
-    public let suspendThreshold: GlucoseThreshold?
+    public let suspendThreshold: HKQuantity?
     public let automaticDosingStrategy: AutomaticDosingStrategy
     public let defaultRapidActingModel: ExponentialInsulinModelPreset?
 }
@@ -163,7 +163,7 @@ struct LoopSettingsParser: Parser {
                 preMealOverride: value.0.9,
                 maximumBasalRatePerHour: value.1,
                 maximumBolus: value.2,
-                suspendThreshold: value.3,
+                suspendThreshold: value.3?.quantity,
                 automaticDosingStrategy: value.4,
                 defaultRapidActingModel: value.5
             )
