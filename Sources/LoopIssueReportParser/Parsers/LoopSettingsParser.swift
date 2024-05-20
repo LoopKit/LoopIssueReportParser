@@ -8,6 +8,7 @@
 import Parsing
 import HealthKit
 import LoopKit
+import LoopAlgorithm
 
 public func <(lhs: HKQuantity, rhs: HKQuantity) -> Bool {
     return lhs.compare(rhs) == .orderedAscending

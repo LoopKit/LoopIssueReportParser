@@ -7,6 +7,7 @@
 
 import Parsing
 import LoopKit
+import LoopAlgorithm
 
 struct ExponentialInsulinModelPresetParser: Parser {
     // rapidActingAdult(ExponentialInsulinModel(actionDuration: 21600.0, peakActivityTime: 4500.0, delay: 600.0))

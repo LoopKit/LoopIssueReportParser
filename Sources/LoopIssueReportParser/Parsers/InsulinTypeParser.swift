@@ -7,6 +7,7 @@
 
 import Parsing
 import LoopKit
+import LoopAlgorithm
 
 struct InsulinTypeParser: Parser {
     var body: some Parser<Substring, InsulinType> {
