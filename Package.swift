@@ -17,7 +17,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/pointfreeco/swift-parsing", branch: "main"),
-        .package(url: "https://github.com/LoopKit/LoopKit", branch: "dev")
+        .package(url: "https://github.com/LoopKit/LoopKit", branch: "tidepool-dev")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
