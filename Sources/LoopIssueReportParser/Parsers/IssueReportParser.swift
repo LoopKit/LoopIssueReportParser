@@ -58,7 +58,7 @@ public struct IssueReportParser: Parser {
             AttributeValueParser(name: "settings") {
                 LoopSettingsParser()
             }
-            Whitespace(.vertical)
+            Skip { PrefixUpTo("insulinCounteractionEffects: [") }
             "insulinCounteractionEffects: ["
             Whitespace(.vertical)
             "* GlucoseEffectVelocity(start, end, mg/dL/min)"
