@@ -27,7 +27,12 @@ final class LoopIssueReportParserTests: XCTestCase {
         XCTAssertEqual(issueReport.loopSettings.insulinSensitivitySchedule?.items.count, 1)
         XCTAssertEqual(issueReport.loopSettings.maximumBolus, 7.0)
 
-        let suspendThreshold = issueReport.loopSettings.suspendThreshold!.quantity
+        XCTAssertEqual(issueReport.insulinCounteractionEffects.count, 248)
+        XCTAssertEqual(issueReport.insulinEffect.count, 344)
+        XCTAssertEqual(issueReport.carbEffect.count, 1)
+        XCTAssertEqual(issueReport.predictedGlucose.count, 56)
+
+        let suspendThreshold = issueReport.loopSettings.suspendThreshold!
         XCTAssertEqual(suspendThreshold.doubleValue(for: .milligramsPerDeciliter), 80, accuracy: 0.01)
 
         XCTAssertEqual(issueReport.loopSettings.automaticDosingStrategy, .tempBasalOnly)

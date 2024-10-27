@@ -8,12 +8,17 @@
 import HealthKit
 import Parsing
 import LoopKit
+import LoopAlgorithm
 
 public struct IssueReport {
     public let generatedAt: Date
     public let buildDetails: BuildDetails
     public let deviceLogs: [DeviceCommunicationLogEntry]
     public let loopSettings: LoopSettings
+    public let insulinCounteractionEffects: [GlucoseEffectVelocity]
+    public let insulinEffect: [GlucoseEffect]
+    public let carbEffect: [GlucoseEffect]
+    public let predictedGlucose: [SimpleGlucoseValue]
     public let cachedGlucoseSamples: [StoredGlucoseSample]
     public let cachedCarbEntries: [StoredCarbEntry]
     public let pumpEvents: [PersistedPumpEvent]
@@ -52,6 +57,46 @@ public struct IssueReportParser: Parser {
             Whitespace(.vertical)
             AttributeValueParser(name: "settings") {
                 LoopSettingsParser()
+            }
+            Whitespace(.vertical)
+            "insulinCounteractionEffects: ["
+            Whitespace(.vertical)
+            "* GlucoseEffectVelocity(start, end, mg/dL/min)"
+            Whitespace(.vertical)
+            Many {
+                GlucoseEffectVelocityParser()
+            } separator: {
+                Whitespace(.vertical)
+            }
+            Skip { PrefixUpTo("insulinEffect: [") }
+            "insulinEffect: ["
+            Whitespace(.vertical)
+            "* GlucoseEffect(start, mg/dL)"
+            Whitespace(.vertical)
+            Many {
+                GlucoseEffectParser()
+            } separator: {
+                Whitespace(.vertical)
+            }
+            Skip { PrefixUpTo("carbEffect: [") }
+            "carbEffect: ["
+            Whitespace(.vertical)
+            "* GlucoseEffect(start, mg/dL)"
+            Whitespace(.vertical)
+            Many {
+                GlucoseEffectParser()
+            } separator: {
+                Whitespace(.vertical)
+            }
+            Skip { PrefixUpTo("predictedGlucose: [") }
+            "predictedGlucose: ["
+            Whitespace(.vertical)
+            "* PredictedGlucoseValue(start, mg/dL)"
+            Whitespace(.vertical)
+            Many {
+                PredictedGlucoseParser()
+            } separator: {
+                Whitespace(.vertical)
             }
             Whitespace(.vertical)
             Skip { PrefixUpTo("### cachedGlucoseSamples") }
@@ -115,16 +160,20 @@ public struct IssueReportParser: Parser {
         }
         return p.map { value in
             IssueReport(
-                generatedAt: value.0,
-                buildDetails: value.1,
-                deviceLogs: value.2 ?? [],
-                loopSettings: value.3,
-                cachedGlucoseSamples: value.4,
-                cachedCarbEntries: value.5,
-                pumpEvents: value.6,
-                normalizedDoseEntries: value.7,
-                entriesForSavingToInsulinDeliveryStore: value.8,
-                cachedDoseEntries: value.9
+                generatedAt: value.0.0,
+                buildDetails: value.0.1,
+                deviceLogs: value.0.2 ?? [],
+                loopSettings: value.0.3,
+                insulinCounteractionEffects: value.0.4,
+                insulinEffect: value.0.5,
+                carbEffect: value.0.6,
+                predictedGlucose: value.0.7,
+                cachedGlucoseSamples: value.0.8,
+                cachedCarbEntries: value.0.9,
+                pumpEvents: value.1,
+                normalizedDoseEntries: value.2,
+                entriesForSavingToInsulinDeliveryStore: value.3,
+                cachedDoseEntries: value.4
             )
         }
     }
