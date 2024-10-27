@@ -30,6 +30,40 @@ public struct LoopSettings {
     public let suspendThreshold: HKQuantity?
     public let automaticDosingStrategy: AutomaticDosingStrategy
     public let defaultRapidActingModel: ExponentialInsulinModelPreset?
+
+    public init(
+        dosingEnabled: Bool,
+        glucoseTargetRangeSchedule: GlucoseRangeSchedule?,
+        insulinSensitivitySchedule: InsulinSensitivitySchedule?,
+        basalRateSchedule: BasalRateSchedule?,
+        carbRatioSchedule: CarbRatioSchedule?,
+        preMealTargetRange: ClosedRange<HKQuantity>?,
+        legacyWorkoutTargetRange: ClosedRange<HKQuantity>?,
+        overridePresets: [TemporaryScheduleOverridePreset],
+        scheduleOverride: TemporaryScheduleOverride?,
+        preMealOverride: TemporaryScheduleOverride?,
+        maximumBasalRatePerHour: Double?,
+        maximumBolus: Double?,
+        suspendThreshold: HKQuantity?,
+        automaticDosingStrategy: AutomaticDosingStrategy,
+        defaultRapidActingModel: ExponentialInsulinModelPreset?
+    ) {
+        self.dosingEnabled = dosingEnabled
+        self.glucoseTargetRangeSchedule = glucoseTargetRangeSchedule
+        self.insulinSensitivitySchedule = insulinSensitivitySchedule
+        self.basalRateSchedule = basalRateSchedule
+        self.carbRatioSchedule = carbRatioSchedule
+        self.preMealTargetRange = preMealTargetRange
+        self.legacyWorkoutTargetRange = legacyWorkoutTargetRange
+        self.overridePresets = overridePresets
+        self.scheduleOverride = scheduleOverride
+        self.preMealOverride = preMealOverride
+        self.maximumBasalRatePerHour = maximumBasalRatePerHour
+        self.maximumBolus = maximumBolus
+        self.suspendThreshold = suspendThreshold
+        self.automaticDosingStrategy = automaticDosingStrategy
+        self.defaultRapidActingModel = defaultRapidActingModel
+    }
 }
 
 struct LoopSettingsParser: Parser {
